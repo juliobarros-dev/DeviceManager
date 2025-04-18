@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DeviceManager.Domain.Models\DeviceManager.Domain.Models.csproj" />
+    </ItemGroup>
+
 </Project>

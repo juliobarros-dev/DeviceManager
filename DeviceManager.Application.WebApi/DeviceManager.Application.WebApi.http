@@ -1,6 +1,0 @@
-@DeviceManager.Application.WebApi_HostAddress = http://localhost:5148
-
-GET {{DeviceManager.Application.WebApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
