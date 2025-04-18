@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManager.Application.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManager.Infrastructure.Database", "DeviceManager.Infrastructure.Database\DeviceManager.Infrastructure.Database.csproj", "{4241514B-2417-48CC-B9B4-583FE3FF897E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManager.Domain.Services", "DeviceManager.Domain.Services\DeviceManager.Domain.Services.csproj", "{382F1708-1C15-46AC-99BF-0DEB76179F43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,7 @@ Global
 		{B5337C00-E710-4191-9528-B787674A4510} = {7D010571-2A0D-4A04-B333-8032E0F6FF02}
 		{D044E6D3-3E25-448D-A4A9-6FE142E40402} = {86EB4E16-22CB-4012-A98D-E4CA53677CF2}
 		{4241514B-2417-48CC-B9B4-583FE3FF897E} = {7ADB6DA3-AEA9-4AD4-A4E7-6A733C620D85}
+		{382F1708-1C15-46AC-99BF-0DEB76179F43} = {7D010571-2A0D-4A04-B333-8032E0F6FF02}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B5337C00-E710-4191-9528-B787674A4510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +45,9 @@ Global
 		{4241514B-2417-48CC-B9B4-583FE3FF897E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4241514B-2417-48CC-B9B4-583FE3FF897E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4241514B-2417-48CC-B9B4-583FE3FF897E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{382F1708-1C15-46AC-99BF-0DEB76179F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{382F1708-1C15-46AC-99BF-0DEB76179F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{382F1708-1C15-46AC-99BF-0DEB76179F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{382F1708-1C15-46AC-99BF-0DEB76179F43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

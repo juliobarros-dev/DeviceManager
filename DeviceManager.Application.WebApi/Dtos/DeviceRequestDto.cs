@@ -26,7 +26,7 @@ public class DeviceRequestDto : DeviceDtoBase
 		{
 			Name = Name,
 			Brand = Brand,
-			State = Enum.Parse<StateType>(State),
+			State = Enum.Parse<StateType>(State, true),
 			CreationTime = DateTime.UtcNow
 		};
 	}

@@ -8,23 +8,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceDtoBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceRequestDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceResponseDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Create Device model">
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Extensions/AssemblyExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Models/Response.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Models/RequestFilters.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Models/ServiceResult.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.http" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Models/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Models/Device.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceRequestDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceResponseDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceResponseDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.sln" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6f937e7fde51c3ca061c59112cdd35b76a72e9ef8821ac361c6ef71e90ea88/ControllerEndpointRouteBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -41,19 +52,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;aws.lambda&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.DeviceManager.Application.WebApi: http.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "aws.lambda",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.DeviceManager.Application.WebApi: http">
     <configuration name="DeviceManager.Application.WebApi: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" />
@@ -95,8 +107,17 @@
       <option name="presentableId" value="Default" />
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
-      <workItem from="1744952775944" duration="1084000" />
+      <workItem from="1744952775944" duration="16706000" />
     </task>
+    <task id="LOCAL-00001" summary="Create Device model">
+      <option name="closed" value="true" />
+      <created>1744955001276</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1744955001276</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,5 +138,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Create Device model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create Device model" />
   </component>
 </project>
