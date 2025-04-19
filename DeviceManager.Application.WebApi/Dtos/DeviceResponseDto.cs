@@ -11,7 +11,7 @@ public class DeviceResponseDto : DeviceDtoBase
 		Id = domainDevice.Id;
 		Name = domainDevice.Name;
 		Brand = domainDevice.Brand;
-		State = domainDevice.State.ToString();
+		State = domainDevice.State.ToString().ToLowerInvariant();
 		CreationTime = domainDevice.CreationTime;
 	}
 }

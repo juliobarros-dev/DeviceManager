@@ -8,20 +8,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Create Device model">
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Extensions/AssemblyExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Models/Response.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Models/RequestFilters.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Models/ServiceResult.cs" afterDir="false" />
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Implement DevicesController.cs">
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceRequestDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceDtoBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceDtoBase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceResponseDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceResponseDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Models/Response.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Models/Response.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.sln" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +30,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb1aa1decdd78757069bb22ccf8442306e771edb10f1c6de6755a69622867e/InternalServerError.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6f937e7fde51c3ca061c59112cdd35b76a72e9ef8821ac361c6ef71e90ea88/ControllerEndpointRouteBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DeviceManager.Tests.Application.Unit.WebApi/Class1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -56,6 +53,7 @@
   "keyToString": {
     ".NET Launch Settings Profile.DeviceManager.Application.WebApi: http.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ccf748ea-08b2-42c1-ba74-0c83a1640307.executor": "Debug",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -107,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
-      <workItem from="1744952775944" duration="16706000" />
+      <workItem from="1744952775944" duration="23674000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -117,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744955001276</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implement DevicesController.cs">
+      <option name="closed" value="true" />
+      <created>1745016607203</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745016607203</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +145,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Create Device model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create Device model" />
+    <MESSAGE value="Implement DevicesController.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement DevicesController.cs" />
   </component>
 </project>

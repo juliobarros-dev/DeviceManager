@@ -7,12 +7,12 @@ public class Response
 	[JsonPropertyName("statusCode")]
 	public int StatusCode { get; set; }
 	
-	[JsonPropertyName("data")]
-	public dynamic? Data { get; set; }
+	[JsonPropertyName("payload")]
+	public object? Payload { get; set; }
 
-	public Response(int statusCode, dynamic? data)
+	public Response(int statusCode, object? payload)
 	{
 		StatusCode = statusCode;
-		Data = data;
+		Payload = payload;
 	}
 }

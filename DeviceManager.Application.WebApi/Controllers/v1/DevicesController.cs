@@ -3,6 +3,7 @@ using DeviceManager.Application.WebApi.Dtos;
 using DeviceManager.Application.WebApi.Models;
 using DeviceManager.Domain.Services.Interfaces;
 using DeviceManager.Domain.Services.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeviceManager.Application.WebApi.Controllers.v1;
@@ -12,14 +13,10 @@ namespace DeviceManager.Application.WebApi.Controllers.v1;
 [Produces("application/json")]
 [Consumes("application/json")]
 [Route("v{version:apiVersion}/[controller]")]
-public class DevicesController : ControllerBase
+public class DevicesController(IServiceProvider serviceProvider) : ControllerBase
 {
-	private readonly IDeviceService _deviceService;
-
-	public DevicesController(IDeviceService deviceService)
-	{
-		_deviceService = deviceService;
-	}
+	private readonly IDeviceService _deviceService = serviceProvider.GetRequiredService<IDeviceService>();
+	private readonly ILogger<DevicesController> _logger = serviceProvider.GetRequiredService<ILogger<DevicesController>>();
 	
 	[HttpPost]
 	[ProducesResponseType(201)]
@@ -27,6 +24,7 @@ public class DevicesController : ControllerBase
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> CreateDevice([FromBody] DeviceRequestDto deviceDto)
 	{
+		_logger.LogDebug($"Method: {nameof(CreateDevice)}");
 		List<string> errors = [];
 		try
 		{
@@ -40,43 +38,26 @@ public class DevicesController : ControllerBase
 			{
 				var validationsFailedResponse = new Response(StatusCodes.Status400BadRequest, errors);
 
-				return new JsonResult(validationsFailedResponse)
-				{
-					StatusCode = validationsFailedResponse.StatusCode
-				};
+				return BadRequest(validationsFailedResponse);
 			}
 
 			var domainDevice = deviceDto.ToDomain();
 
+			_logger.LogDebug($"Calling: {nameof(_deviceService.AddDevice)}");
 			var serviceResult = await _deviceService.AddDevice(domainDevice);
-
-			if (serviceResult.IsSuccess is false)
-			{
-				var failResponse = new Response(serviceResult.StatusCode, serviceResult.Errors);
-				
-				return new JsonResult(failResponse)
-				{
-					StatusCode = failResponse.StatusCode
-				};
-			}
 
 			var responseDto = new DeviceResponseDto(serviceResult.Data!);
 
 			var successResponse = new Response(serviceResult.StatusCode, responseDto);
 
-			return new JsonResult(successResponse)
-			{
-				StatusCode = successResponse.StatusCode
-			};
+			return CreatedAtAction(nameof(CreateDevice), "/devices", successResponse);
 		}
 		catch (Exception ex)
 		{
+			_logger.LogError(ex, "Unexpected error when creating device");
 			var response = new Response(StatusCodes.Status500InternalServerError, "Something went wrong, please try again");
 
-			return new JsonResult(response)
-			{
-				StatusCode = response.StatusCode
-			};
+			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
 	}
 
