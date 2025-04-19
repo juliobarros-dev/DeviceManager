@@ -86,7 +86,7 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 	}
 	
 	[HttpGet]
-	[Route("/{id:int}")]
+	[Route("{id:int}")]
 	[ProducesResponseType(200)]
 	[ProducesResponseType(404)]
 	[ProducesResponseType(500)]
