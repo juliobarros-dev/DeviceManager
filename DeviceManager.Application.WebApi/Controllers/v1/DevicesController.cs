@@ -182,35 +182,24 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> DeleteDevice([FromRoute] int id)
 	{
+		_logger.LogDebug($"Method: {nameof(DeleteDevice)}");
 		try
 		{
+			_logger.LogDebug($"Calling: {nameof(_deviceService.DeleteDevice)}");
 			var serviceResult = await _deviceService.DeleteDevice(id);
 
-			if (serviceResult.IsSuccess is false)
-			{
-				var failedResponse = new Response(serviceResult.StatusCode, serviceResult.Errors);
+			if (serviceResult.IsSuccess) return NoContent();
+			
+			var failedResponse = new Response(serviceResult.StatusCode, serviceResult.Errors);
 
-				return new JsonResult(failedResponse)
-				{
-					StatusCode = failedResponse.StatusCode
-				};
-			}
-
-			var successResponse = new Response(serviceResult.StatusCode, null);
-
-			return new JsonResult(successResponse)
-			{
-				StatusCode = successResponse.StatusCode
-			};
+			return NotFound(failedResponse);
 		}
 		catch (Exception ex)
 		{
-			var response = new Response(StatusCodes.Status500InternalServerError, "Something went wrong, please try again");
+			_logger.LogError(ex, "Unexpected error when deleting device");
+			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
-			return new JsonResult(response)
-			{
-				StatusCode = response.StatusCode
-			};
+			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
 	}
 }

@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using DeviceManager.Application.WebApi.Controllers.v1;
+﻿using DeviceManager.Application.WebApi.Controllers.v1;
 using DeviceManager.Application.WebApi.Dtos;
 using DeviceManager.Application.WebApi.Models;
 using DeviceManager.Domain.Models;
@@ -534,6 +533,113 @@ public class DevicesControllerTests
 					LogLevel.Error,
 					It.IsAny<EventId>(),
 					It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Unexpected error when updating device")),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()),
+			Times.Once);
+	}
+	#endregion
+
+	#region Delete
+
+	[Fact]
+	public async Task DeleteDevice__ShouldReturnNoContent__GivenValidRequest()
+	{
+		// Arrange
+		const int deviceId = 1;
+
+		_mockDeviceService.Setup(serv =>
+			serv.DeleteDevice(It.IsAny<int>()))
+			.ReturnsAsync(
+				new ServiceResult<Device>()
+				{
+					IsSuccess = true
+				}
+			);
+		
+		// Act
+		var result = await _sut.DeleteDevice(deviceId);
+		
+		// Assert
+		var noContentResult = Assert.IsType<NoContentResult>(result);
+		Assert.Equal(StatusCodes.Status204NoContent, noContentResult.StatusCode);
+		
+		_mockDeviceService.Verify(serv => 
+			serv.DeleteDevice(It.IsAny<int>()), Times.Once);
+		
+		_mockLogger.Verify(log => 
+				log.Log(
+					LogLevel.Debug,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((_, __) => true),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()), 
+			Times.Exactly(2));
+	}
+	
+	[Fact]
+	public async Task DeleteDevice__ShouldReturnNotFound__GivenNonExistentId()
+	{
+		// Arrange
+		const int deviceId = 1;
+
+		_mockDeviceService.Setup(serv =>
+				serv.DeleteDevice(It.IsAny<int>()))
+			.ReturnsAsync(
+				new ServiceResult<Device>()
+				{
+					IsSuccess = false,
+					Errors = ["Device not found"]
+				}
+			);
+		
+		// Act
+		var result = await _sut.DeleteDevice(deviceId);
+		
+		// Assert
+		var notFoundResult = Assert.IsType<NotFoundObjectResult>(result);
+		Assert.Equal(StatusCodes.Status404NotFound, notFoundResult.StatusCode);
+		
+		var response = Assert.IsType<Response>(notFoundResult.Value);
+		Assert.IsType<List<string>>(response.Payload);
+		
+		_mockDeviceService.Verify(serv => 
+			serv.DeleteDevice(It.IsAny<int>()), Times.Once);
+		
+		_mockLogger.Verify(log => 
+				log.Log(
+					LogLevel.Debug,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((_, __) => true),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()), 
+			Times.Exactly(2));
+	}
+
+	[Fact]
+	public async Task DeleteDevice__ShouldReturnInternalServerError__GivenException()
+	{
+		// Arrange
+		const int deviceId = 1;
+
+		_mockDeviceService.Setup(serv =>
+				serv.DeleteDevice(It.IsAny<int>()))
+			.Throws(new Exception());
+		
+		// Act
+		var result = await _sut.DeleteDevice(deviceId);
+		
+		// Assert
+		var objectResult = Assert.IsType<ObjectResult>(result);
+		Assert.Equal(StatusCodes.Status500InternalServerError, objectResult.StatusCode);
+
+		var response = Assert.IsType<Response>(objectResult.Value);
+		Assert.Equal(ErrorMessage, response.Payload);
+		
+		_mockLogger.Verify(log =>
+				log.Log(
+					LogLevel.Error,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Unexpected error when deleting device")),
 					It.IsAny<Exception>(),
 					It.IsAny<Func<It.IsAnyType, Exception, string>>()),
 			Times.Once);
