@@ -2,7 +2,9 @@ using Asp.Versioning;
 using DeviceManager.Application.WebApi.Extensions;
 using DeviceManager.Domain.Services.Implementations;
 using DeviceManager.Domain.Services.Interfaces;
+using DeviceManager.Infrastructure.Database.Context;
 using DeviceManager.Infrastructure.Database.Implementations;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +13,11 @@ var basePath = typeof(Program).Assembly.GetDirectoryName();
 builder.Configuration
 	.SetBasePath(basePath)
 	.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-	// .AddJsonFile("appsettings.database.json", optional: true, reloadOnChange: true)
+	.AddJsonFile("appsettings.database.json", optional: true, reloadOnChange: true)
 	.AddEnvironmentVariables();
+
+builder.Services.AddDbContext<DeviceManagerDbContext>(options =>
+	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IDeviceService, DeviceService>();
 builder.Services.AddScoped<IDeviceRepository, DeviceRepository>();
