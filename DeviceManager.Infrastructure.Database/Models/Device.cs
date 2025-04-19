@@ -9,4 +9,16 @@ public class Device
 	public string Brand { get; set; } = string.Empty;
 	public StateType State { get; set; }
 	public DateTime CreationTime { get; set; }
+
+	public Domain.Models.Device ToDomain()
+	{
+		return new Domain.Models.Device()
+		{
+			Id = Id,
+			Name = Name,
+			Brand = Brand,
+			State = State,
+			CreationTime = CreationTime
+		};
+	}
 }

@@ -1,10 +1,11 @@
-﻿using DeviceManager.Domain.Models;
+﻿using DeviceManager.Domain.Services.Interfaces;
+using DeviceManager.Infrastructure.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Device = DeviceManager.Infrastructure.Database.Models.Device;
 
 namespace DeviceManager.Infrastructure.Database.Context
 {
-	public class DeviceManagerDbContext(DbContextOptions<DeviceManagerDbContext> options) : DbContext(options)
+	public class DeviceManagerDbContext(DbContextOptions<DeviceManagerDbContext> options) : DbContext(options), IDeviceManagerDbContext
 	{
 		public DbSet<Device> Devices { get; set; }
 

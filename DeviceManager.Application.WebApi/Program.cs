@@ -4,6 +4,7 @@ using DeviceManager.Domain.Services.Implementations;
 using DeviceManager.Domain.Services.Interfaces;
 using DeviceManager.Infrastructure.Database.Context;
 using DeviceManager.Infrastructure.Database.Implementations;
+using DeviceManager.Infrastructure.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Configuration
 builder.Services.AddDbContext<DeviceManagerDbContext>(options =>
 	options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IDeviceManagerDbContext, DeviceManagerDbContext>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
 builder.Services.AddScoped<IDeviceRepository, DeviceRepository>();
 
