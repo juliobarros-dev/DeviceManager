@@ -15,6 +15,7 @@ namespace DeviceManager.Application.WebApi.Controllers.v1;
 [Route("v{version:apiVersion}/[controller]")]
 public class DevicesController(IServiceProvider serviceProvider) : ControllerBase
 {
+	private const string ErrorMessage = "Something went wrong, please try again";
 	private readonly IDeviceService _deviceService = serviceProvider.GetRequiredService<IDeviceService>();
 	private readonly ILogger<DevicesController> _logger = serviceProvider.GetRequiredService<ILogger<DevicesController>>();
 	
@@ -55,7 +56,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 		catch (Exception ex)
 		{
 			_logger.LogError(ex, "Unexpected error when creating device");
-			var response = new Response(StatusCodes.Status500InternalServerError, "Something went wrong, please try again");
+			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
@@ -66,37 +67,24 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> FetchDevices([FromQuery] RequestFilters filters)
 	{
+		_logger.LogDebug($"Method: {nameof(FetchDevices)}");
 		try
 		{
+			_logger.LogDebug($"Calling: {nameof(_deviceService.GetDevices)}");
 			var serviceResult = await _deviceService.GetDevices(filters);
-
-			if (serviceResult.IsSuccess is false)
-			{
-				var failResponse = new Response(serviceResult.StatusCode, serviceResult.Errors);
-				
-				return new JsonResult(failResponse)
-				{
-					StatusCode = failResponse.StatusCode
-				};
-			}
 
 			var responseDtoList = serviceResult.DataCollection.Select(device => new DeviceResponseDto(device)).ToList();
 
 			var successResponse = new Response(serviceResult.StatusCode, responseDtoList);
 
-			return new JsonResult(successResponse)
-			{
-				StatusCode = successResponse.StatusCode
-			};
+			return Ok(successResponse);
 		}
 		catch (Exception ex)
 		{
-			var response = new Response(StatusCodes.Status500InternalServerError, "Something went wrong, please try again");
+			_logger.LogError(ex, "Unexpected error when fetching devices");
+			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
-			return new JsonResult(response)
-			{
-				StatusCode = response.StatusCode
-			};
+			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
 	}
 	
@@ -107,37 +95,31 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> FetchDevice([FromRoute] int id)
 	{
+		_logger.LogDebug($"Method: {nameof(FetchDevice)}");
 		try
 		{
+			_logger.LogDebug($"Calling: {nameof(_deviceService.GetDevice)}");
 			var serviceResult = await _deviceService.GetDevice(id);
 
 			if (serviceResult.IsSuccess is false)
 			{
 				var failResponse = new Response(serviceResult.StatusCode, serviceResult.Errors);
 
-				return new JsonResult(failResponse)
-				{
-					StatusCode = failResponse.StatusCode
-				};
+				return NotFound(failResponse);
 			}
 
 			var responseDto = new DeviceResponseDto(serviceResult.Data!);
 
 			var successResponse = new Response(serviceResult.StatusCode, responseDto);
 
-			return new JsonResult(successResponse)
-			{
-				StatusCode = successResponse.StatusCode
-			};
+			return Ok(successResponse);
 		}
 		catch (Exception ex)
 		{
-			var response = new Response(StatusCodes.Status500InternalServerError, "Something went wrong, please try again");
+			_logger.LogError(ex, "Unexpected error when fetching device");
+			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
-			return new JsonResult(response)
-			{
-				StatusCode = response.StatusCode
-			};
+			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
 	}
 

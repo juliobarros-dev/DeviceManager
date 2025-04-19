@@ -6,5 +6,10 @@
     &lt;TestId&gt;xUnit::FE3AF89B-2523-4A27-88F9-C827A2785322::net9.0::DeviceManager.Tests.Unit.Application.WebApi.Controllers.DevicesControllerTests.CreateDevice__ShouldReturnCreated__GivenValidRequest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::FE3AF89B-2523-4A27-88F9-C827A2785322::net9.0::DeviceManager.Tests.Unit.Application.WebApi.Controllers.DevicesControllerTests.CreateDevice__ShouldReturnBadRequest__GivenInvalidRequest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::FE3AF89B-2523-4A27-88F9-C827A2785322::net9.0::DeviceManager.Tests.Unit.Application.WebApi.Controllers.DevicesControllerTests.CreateDevice__ShouldInternalServerError__GivenException&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::FE3AF89B-2523-4A27-88F9-C827A2785322::net9.0::DeviceManager.Tests.Unit.Application.WebApi.Controllers.DevicesControllerTests.FetchDevices__ShouldReturnOk__GivenValidRequest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::FE3AF89B-2523-4A27-88F9-C827A2785322::net9.0::DeviceManager.Tests.Unit.Application.WebApi.Controllers.DevicesControllerTests.FetchDevices__ShouldReturnInternalServerError__GivenException&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::FE3AF89B-2523-4A27-88F9-C827A2785322::net9.0::DeviceManager.Tests.Unit.Application.WebApi.Controllers.DevicesControllerTests.FetchDevice__ShouldReturnOk__GivenValidRequest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::FE3AF89B-2523-4A27-88F9-C827A2785322::net9.0::DeviceManager.Tests.Unit.Application.WebApi.Controllers.DevicesControllerTests.FetchDevice__ShouldReturnNotFound__GivenNonExistentId&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::FE3AF89B-2523-4A27-88F9-C827A2785322::net9.0::DeviceManager.Tests.Unit.Application.WebApi.Controllers.DevicesControllerTests.FetchDevice__ShouldReturnInternalServerError__GivenException&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

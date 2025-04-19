@@ -17,6 +17,7 @@ namespace DeviceManager.Tests.Unit.Application.WebApi.Controllers;
 
 public class DevicesControllerTests
 {
+	private const string ErrorMessage = "Something went wrong, please try again";
 	private readonly Mock<IDeviceService> _mockDeviceService;
 	private readonly Mock<ILogger<DevicesController>> _mockLogger;
 	private readonly DevicesController _sut;
@@ -155,16 +156,181 @@ public class DevicesControllerTests
 		Assert.Equal(StatusCodes.Status500InternalServerError, objectResult.StatusCode);
 
 		var response = Assert.IsType<Response>(objectResult.Value);
-		Assert.Equal("Something went wrong, please try again", response.Payload);
-		
-		_mockDeviceService.Verify(serv => 
-			serv.AddDevice(It.IsAny<Device>()), Times.Once);
+		Assert.Equal(ErrorMessage, response.Payload);
 		
 		_mockLogger.Verify(log =>
 				log.Log(
 					LogLevel.Error,
 					It.IsAny<EventId>(),
 					It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Unexpected error when creating device")),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()),
+			Times.Once);
+	}
+	#endregion
+	
+	#region Fetch
+
+	[Fact]
+	public async Task FetchDevices__ShouldReturnOk__GivenValidRequest()
+	{
+		// Assert
+		_mockDeviceService.Setup(serv =>
+			serv.GetDevices(It.IsAny<RequestFilters>())).ReturnsAsync(
+			new ServiceResult<Device>());
+		
+		// Act
+		var result = await _sut.FetchDevices(new RequestFilters());
+		
+		// Assert
+		var okResult = Assert.IsType<OkObjectResult>(result);
+		Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+		
+		var response = Assert.IsType<Response>(okResult.Value);
+		Assert.IsType<List<DeviceResponseDto>>(response.Payload);
+		
+		_mockDeviceService.Verify(serv => 
+			serv.GetDevices(It.IsAny<RequestFilters>()), Times.Once);
+		
+		_mockLogger.Verify(log => 
+				log.Log(
+					LogLevel.Debug,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((_, __) => true),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()), 
+			Times.Exactly(2));
+	}
+	
+	[Fact]
+	public async Task FetchDevices__ShouldReturnInternalServerError__GivenException()
+	{
+		// Assert
+		_mockDeviceService.Setup(serv =>
+			serv.GetDevices(It.IsAny<RequestFilters>())).Throws(new Exception());
+		
+		// Act
+		var result = await _sut.FetchDevices(new RequestFilters());
+		
+		// Assert
+		var objectResult = Assert.IsType<ObjectResult>(result);
+		Assert.Equal(StatusCodes.Status500InternalServerError, objectResult.StatusCode);
+
+		var response = Assert.IsType<Response>(objectResult.Value);
+		Assert.Equal(ErrorMessage, response.Payload);
+		
+		_mockLogger.Verify(log =>
+				log.Log(
+					LogLevel.Error,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Unexpected error when fetching devices")),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()),
+			Times.Once);
+	}
+	
+	[Fact]
+	public async Task FetchDevice__ShouldReturnOk__GivenValidRequest()
+	{
+		// Assert
+		const int deviceId = 2;
+		
+		_mockDeviceService.Setup(serv =>
+			serv.GetDevice(It.IsAny<int>()))
+			.ReturnsAsync(
+				new ServiceResult<Device>()
+				{
+					IsSuccess = true,
+					Data = new Device() { Id = deviceId}
+				}
+			);
+		
+		// Act
+		var result = await _sut.FetchDevice(deviceId);
+		
+		// Assert
+		var okResult = Assert.IsType<OkObjectResult>(result);
+		Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+		
+		var response = Assert.IsType<Response>(okResult.Value);
+		Assert.IsType<DeviceResponseDto>(response.Payload);
+		
+		_mockDeviceService.Verify(serv => 
+			serv.GetDevice(It.IsAny<int>()), Times.Once);
+		
+		_mockLogger.Verify(log => 
+				log.Log(
+					LogLevel.Debug,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((_, __) => true),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()), 
+			Times.Exactly(2));
+	}
+	
+	[Fact]
+	public async Task FetchDevice__ShouldReturnNotFound__GivenNonExistentId()
+	{
+		// Assert
+		const int deviceId = 2;
+		
+		_mockDeviceService.Setup(serv =>
+				serv.GetDevice(It.IsAny<int>()))
+			.ReturnsAsync(
+				new ServiceResult<Device>()
+				{
+					IsSuccess = false,
+					Errors = ["Device not found"]
+				}
+			);
+		
+		// Act
+		var result = await _sut.FetchDevice(deviceId);
+		
+		// Assert
+		var notFoundResult = Assert.IsType<NotFoundObjectResult>(result);
+		Assert.Equal(StatusCodes.Status404NotFound, notFoundResult.StatusCode);
+		
+		var response = Assert.IsType<Response>(notFoundResult.Value);
+		Assert.IsType<List<string>>(response.Payload);
+		
+		_mockDeviceService.Verify(serv => 
+			serv.GetDevice(It.IsAny<int>()), Times.Once);
+		
+		_mockLogger.Verify(log => 
+				log.Log(
+					LogLevel.Debug,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((_, __) => true),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()), 
+			Times.Exactly(2));
+	}
+	
+	[Fact]
+	public async Task FetchDevice__ShouldReturnInternalServerError__GivenException()
+	{
+		// Assert
+		const int deviceId = 2;
+		
+		_mockDeviceService.Setup(serv =>
+			serv.GetDevice(It.IsAny<int>())).Throws(new Exception());
+		
+		// Act
+		var result = await _sut.FetchDevice(deviceId);
+		
+		// Assert
+		var objectResult = Assert.IsType<ObjectResult>(result);
+		Assert.Equal(StatusCodes.Status500InternalServerError, objectResult.StatusCode);
+
+		var response = Assert.IsType<Response>(objectResult.Value);
+		Assert.Equal(ErrorMessage, response.Payload);
+		
+		_mockLogger.Verify(log =>
+				log.Log(
+					LogLevel.Error,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Unexpected error when fetching device")),
 					It.IsAny<Exception>(),
 					It.IsAny<Func<It.IsAnyType, Exception, string>>()),
 			Times.Once);

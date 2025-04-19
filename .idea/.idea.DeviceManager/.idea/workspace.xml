@@ -8,14 +8,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Implement DevicesController.cs">
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" afterDir="false" />
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Add Controllers.Create tests">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceDtoBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceDtoBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceResponseDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceResponseDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Models/Response.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Models/Response.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.sln" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +28,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb1aa1decdd78757069bb22ccf8442306e771edb10f1c6de6755a69622867e/InternalServerError.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6f937e7fde51c3ca061c59112cdd35b76a72e9ef8821ac361c6ef71e90ea88/ControllerEndpointRouteBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DeviceManager.Tests.Application.Unit.WebApi/Class1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/JulioNascimento/Documents/Julio Barros/Projetos/DeviceManager/DeviceManager.Application.WebApi/Dtos/DeviceDtoBase.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -105,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
-      <workItem from="1744952775944" duration="23674000" />
+      <workItem from="1744952775944" duration="25837000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -123,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745016607203</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add Controllers.Create tests">
+      <option name="closed" value="true" />
+      <created>1745023544210</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745023544210</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +150,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Create Device model" />
     <MESSAGE value="Implement DevicesController.cs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement DevicesController.cs" />
+    <MESSAGE value="Add Controllers.Create tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Controllers.Create tests" />
   </component>
 </project>
