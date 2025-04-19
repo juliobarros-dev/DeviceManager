@@ -20,7 +20,7 @@ public class DeviceRequestDto : DeviceDtoBase
 		return (!errorsList.Any(), errorsList);
 	}
 	
-	public Device ToDomain()
+	public Device ToCreateDomain()
 	{
 		return new Device()
 		{
@@ -28,6 +28,17 @@ public class DeviceRequestDto : DeviceDtoBase
 			Brand = Brand,
 			State = Enum.Parse<StateType>(State, true),
 			CreationTime = DateTime.UtcNow
+		};
+	}
+	
+	public Device ToUpdateDomain()
+	{
+		return new Device()
+		{
+			Id = Id,
+			Name = Name,
+			Brand = Brand,
+			State = Enum.Parse<StateType>(State, true),
 		};
 	}
 }

@@ -310,7 +310,7 @@ public class DevicesControllerTests
 	[Fact]
 	public async Task FetchDevice__ShouldReturnInternalServerError__GivenException()
 	{
-		// Assert
+		// Arrange
 		const int deviceId = 2;
 		
 		_mockDeviceService.Setup(serv =>
@@ -331,6 +331,209 @@ public class DevicesControllerTests
 					LogLevel.Error,
 					It.IsAny<EventId>(),
 					It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Unexpected error when fetching device")),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()),
+			Times.Once);
+	}
+	#endregion
+
+	#region Update
+	[Fact]
+	public async Task UpdateDevice__ShouldReturnOk__GivenValidRequest()
+	{
+		//Arrange
+		const int deviceId = 2;
+		
+		var request = new DeviceRequestDto()
+		{
+			Id = deviceId,
+			Name = "iPhone",
+			Brand = "Apple",
+			State = "available"
+		};
+
+		var domainDevice = new Device()
+		{
+			Id = deviceId,
+			Name = "iPhone",
+			Brand = "Apple",
+			CreationTime = DateTime.UtcNow,
+			State = StateType.Available
+		};
+
+		_mockDeviceService.Setup(serv =>
+				serv.UpdateDevice(It.IsAny<Device>()))
+			.ReturnsAsync(new ServiceResult<Device>()
+			{
+				IsSuccess = true,
+				StatusCode = StatusCodes.Status201Created,
+				Data = domainDevice,
+			});
+
+		// Act
+		var result = await _sut.UpdateDevice(deviceId, request);
+
+		// Assert
+		var okResult = Assert.IsType<OkObjectResult>(result);
+		Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+
+		var response = Assert.IsType<Response>(okResult.Value);
+		var responseDto = Assert.IsType<DeviceResponseDto>(response.Payload);
+
+		Assert.NotNull(responseDto.Id);
+		Assert.NotNull(responseDto.CreationTime);
+		Assert.NotNull(responseDto.State);
+		Assert.Equal(request.Name, responseDto.Name);
+		Assert.Equal(request.Brand, responseDto.Brand);
+		Assert.Equal(request.State, responseDto.State);
+		
+		_mockDeviceService.Verify(serv => 
+			serv.UpdateDevice(It.IsAny<Device>()), Times.Once);
+		
+		_mockLogger.Verify(log => 
+				log.Log(
+					LogLevel.Debug,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((_, __) => true),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()), 
+			Times.Exactly(2));
+	}
+	
+	[Fact]
+	public async Task UpdateDevice__ShouldReturnBadRequest__GivenInvalidRequest()
+	{
+		//Arrange
+		const int deviceId = 2;
+		
+		var request = new DeviceRequestDto()
+		{
+			Id = 1,
+			Name = "iPhone",
+			Brand = "",
+			State = "available"
+		};
+
+		var domainDevice = new Device()
+		{
+			Id = deviceId,
+			Name = "iPhone",
+			Brand = "Apple",
+			CreationTime = DateTime.UtcNow,
+			State = StateType.Available
+		};
+
+		// Act
+		var result = await _sut.UpdateDevice(deviceId, request);
+
+		// Assert
+		var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+		Assert.Equal(StatusCodes.Status400BadRequest, badRequestResult.StatusCode);
+
+		var response = Assert.IsType<Response>(badRequestResult.Value);
+		var responseDto = Assert.IsType<List<string>>(response.Payload);
+		
+		_mockDeviceService.Verify(serv => 
+			serv.UpdateDevice(It.IsAny<Device>()), Times.Never);
+		
+		_mockLogger.Verify(log => 
+				log.Log(
+					LogLevel.Debug,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((_, __) => true),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()), 
+			Times.Once);
+	}
+	
+	[Fact]
+	public async Task UpdateDevice__ShouldReturnNotFound__GivenNonExistentId()
+	{
+		//Arrange
+		const int deviceId = 2;
+		
+		var request = new DeviceRequestDto()
+		{
+			Id = 2,
+			Name = "iPhone",
+			Brand = "Apple",
+			State = "available"
+		};
+		
+		_mockDeviceService.Setup(serv =>
+				serv.UpdateDevice(It.IsAny<Device>()))
+			.ReturnsAsync(new ServiceResult<Device>()
+			{
+				IsSuccess = false,
+				StatusCode = StatusCodes.Status404NotFound,
+				Errors = ["Device not found"]
+			});
+
+		// Act
+		var result = await _sut.UpdateDevice(deviceId, request);
+
+		// Assert
+		var notFoundResult = Assert.IsType<NotFoundObjectResult>(result);
+		Assert.Equal(StatusCodes.Status404NotFound, notFoundResult.StatusCode);
+
+		var response = Assert.IsType<Response>(notFoundResult.Value);
+		Assert.IsType<List<string>>(response.Payload);
+		
+		_mockDeviceService.Verify(serv => 
+			serv.UpdateDevice(It.IsAny<Device>()), Times.Once);
+		
+		_mockLogger.Verify(log => 
+				log.Log(
+					LogLevel.Debug,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((_, __) => true),
+					It.IsAny<Exception>(),
+					It.IsAny<Func<It.IsAnyType, Exception, string>>()), 
+			Times.Exactly(2));
+	}
+	
+	[Fact]
+	public async Task UpdateDevice__ShouldReturnInternalServerError__GivenException()
+	{
+		//Arrange
+		const int deviceId = 2;
+		
+		var request = new DeviceRequestDto()
+		{
+			Id = deviceId,
+			Name = "iPhone",
+			Brand = "Apple",
+			State = "available"
+		};
+
+		var domainDevice = new Device()
+		{
+			Id = deviceId,
+			Name = "iPhone",
+			Brand = "Apple",
+			CreationTime = DateTime.UtcNow,
+			State = StateType.Available
+		};
+
+		_mockDeviceService.Setup(serv =>
+				serv.UpdateDevice(It.IsAny<Device>()))
+			.Throws(new Exception());
+		
+		// Act
+		var result = await _sut.UpdateDevice(deviceId, request);
+		
+		// Assert
+		var objectResult = Assert.IsType<ObjectResult>(result);
+		Assert.Equal(StatusCodes.Status500InternalServerError, objectResult.StatusCode);
+
+		var response = Assert.IsType<Response>(objectResult.Value);
+		Assert.Equal(ErrorMessage, response.Payload);
+		
+		_mockLogger.Verify(log =>
+				log.Log(
+					LogLevel.Error,
+					It.IsAny<EventId>(),
+					It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Unexpected error when updating device")),
 					It.IsAny<Exception>(),
 					It.IsAny<Func<It.IsAnyType, Exception, string>>()),
 			Times.Once);

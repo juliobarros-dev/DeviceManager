@@ -42,7 +42,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 				return BadRequest(validationsFailedResponse);
 			}
 
-			var domainDevice = deviceDto.ToDomain();
+			var domainDevice = deviceDto.ToCreateDomain();
 
 			_logger.LogDebug($"Calling: {nameof(_deviceService.AddDevice)}");
 			var serviceResult = await _deviceService.AddDevice(domainDevice);
@@ -131,6 +131,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> UpdateDevice([FromRoute] int id, [FromBody] DeviceRequestDto deviceDto)
 	{
+		_logger.LogDebug($"Method: {nameof(UpdateDevice)}");
 		List<string> errors = [];
 		try
 		{
@@ -144,43 +145,33 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 			{
 				var validationsFailedResponse = new Response(StatusCodes.Status400BadRequest, errors);
 
-				return new JsonResult(validationsFailedResponse)
-				{
-					StatusCode = validationsFailedResponse.StatusCode
-				};
+				return BadRequest(validationsFailedResponse);
 			}
 
-			var domainDevice = deviceDto.ToDomain();
+			var domainDevice = deviceDto.ToUpdateDomain();
 
+			_logger.LogDebug($"Calling: {nameof(_deviceService.UpdateDevice)}");
 			var serviceResult = await _deviceService.UpdateDevice(domainDevice);
 
 			if (serviceResult.IsSuccess is false)
 			{
 				var failedResponse = new Response(serviceResult.StatusCode, serviceResult.Errors);
 
-				return new JsonResult(failedResponse)
-				{
-					StatusCode = failedResponse.StatusCode
-				};
+				return NotFound(failedResponse);
 			}
 
 			var responseDto = new DeviceResponseDto(serviceResult.Data!);
 
 			var successResponse = new Response(serviceResult.StatusCode, responseDto);
 
-			return new JsonResult(successResponse)
-			{
-				StatusCode = successResponse.StatusCode
-			};
+			return Ok(successResponse);
 		}
 		catch (Exception ex)
 		{
-			var response = new Response(StatusCodes.Status500InternalServerError, "Something went wrong, please try again");
+			_logger.LogError(ex, "Unexpected error when updating device");
+			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
-			return new JsonResult(response)
-			{
-				StatusCode = response.StatusCode
-			};
+			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
 	}
 
