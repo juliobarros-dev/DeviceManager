@@ -116,7 +116,7 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 			return result;
 		}
 
-		await deviceRepository.DeleteAsync(deviceToDelete);
+		await deviceRepository.DeleteAsync(id);
 
 		result.IsSuccess = true;
 

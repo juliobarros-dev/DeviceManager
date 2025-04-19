@@ -58,8 +58,10 @@ public class DeviceRepository(IDeviceManagerDbContext dbContext) : IDeviceReposi
 		throw new NotImplementedException();
 	}
 
-	public Task DeleteAsync(DomainDevice deviceToDelete)
+	public async Task DeleteAsync(int id)
 	{
-		throw new NotImplementedException();
+		await dbContext.Devices
+			.Where(d => d.Id == id)
+			.ExecuteDeleteAsync();
 	}
 }

@@ -173,7 +173,7 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 	}
 
 	[HttpDelete]
-	[Route("/{id:int}")]
+	[Route("{id:int}")]
 	[ProducesResponseType(204)]
 	[ProducesResponseType(404)]
 	[ProducesResponseType(500)]
