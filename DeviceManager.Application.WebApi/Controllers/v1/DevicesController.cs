@@ -34,7 +34,7 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 
 			if (errors.Any())
 			{
-				var validationsFailedResponse = new Response(StatusCodes.Status400BadRequest, errors);
+				var validationsFailedResponse = new Response(errors);
 
 				return BadRequest(validationsFailedResponse);
 			}
@@ -46,14 +46,14 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 
 			var responseDto = new DeviceResponseDto(serviceResult.Data!);
 
-			var successResponse = new Response(serviceResult.StatusCode, responseDto);
+			var successResponse = new Response(responseDto);
 
 			return CreatedAtAction(nameof(CreateDevice), "/devices", successResponse);
 		}
 		catch (Exception ex)
 		{
 			logger.LogError(ex, "Unexpected error when creating device");
-			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
+			var response = new Response(ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
@@ -72,14 +72,14 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 
 			var responseDtoList = serviceResult.DataCollection.Select(device => new DeviceResponseDto(device)).ToList();
 
-			var successResponse = new Response(serviceResult.StatusCode, responseDtoList);
+			var successResponse = new Response(responseDtoList);
 
 			return Ok(successResponse);
 		}
 		catch (Exception ex)
 		{
 			logger.LogError(ex, "Unexpected error when fetching devices");
-			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
+			var response = new Response(ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
@@ -100,21 +100,21 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 
 			if (serviceResult.IsSuccess is false)
 			{
-				var failResponse = new Response(serviceResult.StatusCode, serviceResult.Errors);
+				var failResponse = new Response(serviceResult.Errors);
 
 				return NotFound(failResponse);
 			}
 
 			var responseDto = new DeviceResponseDto(serviceResult.Data!);
 
-			var successResponse = new Response(serviceResult.StatusCode, responseDto);
+			var successResponse = new Response(responseDto);
 
 			return Ok(successResponse);
 		}
 		catch (Exception ex)
 		{
 			logger.LogError(ex, "Unexpected error when fetching device");
-			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
+			var response = new Response(ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
@@ -140,7 +140,7 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 
 			if (errors.Any())
 			{
-				var validationsFailedResponse = new Response(StatusCodes.Status400BadRequest, errors);
+				var validationsFailedResponse = new Response(errors);
 
 				return BadRequest(validationsFailedResponse);
 			}
@@ -148,25 +148,25 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 			var domainDevice = deviceDto.ToUpdateDomain();
 
 			logger.LogDebug($"Calling: {nameof(deviceService.UpdateDevice)}");
-			var serviceResult = await deviceService.UpdateDevice(domainDevice);
+			var serviceResult = await deviceService.UpdateDevice(id, domainDevice);
 
 			if (serviceResult.IsSuccess is false)
 			{
-				var failedResponse = new Response(serviceResult.StatusCode, serviceResult.Errors);
+				var failedResponse = new Response(serviceResult.Errors);
 
 				return NotFound(failedResponse);
 			}
 
 			var responseDto = new DeviceResponseDto(serviceResult.Data!);
 
-			var successResponse = new Response(serviceResult.StatusCode, responseDto);
+			var successResponse = new Response(responseDto);
 
 			return Ok(successResponse);
 		}
 		catch (Exception ex)
 		{
 			logger.LogError(ex, "Unexpected error when updating device");
-			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
+			var response = new Response(ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}
@@ -187,14 +187,14 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 
 			if (serviceResult.IsSuccess) return NoContent();
 			
-			var failedResponse = new Response(serviceResult.StatusCode, serviceResult.Errors);
+			var failedResponse = new Response(serviceResult.Errors);
 
 			return NotFound(failedResponse);
 		}
 		catch (Exception ex)
 		{
 			logger.LogError(ex, "Unexpected error when deleting device");
-			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
+			var response = new Response(ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
 		}

@@ -55,7 +55,6 @@ public class DevicesControllerTests
 			.ReturnsAsync(new ServiceResult<Device>()
 			{
 				IsSuccess = true,
-				StatusCode = StatusCodes.Status201Created,
 				Data = domainDevice,
 			});
 
@@ -354,11 +353,10 @@ public class DevicesControllerTests
 		};
 
 		_mockDeviceService.Setup(serv =>
-				serv.UpdateDevice(It.IsAny<Device>()))
+				serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()))
 			.ReturnsAsync(new ServiceResult<Device>()
 			{
 				IsSuccess = true,
-				StatusCode = StatusCodes.Status201Created,
 				Data = domainDevice,
 			});
 
@@ -380,7 +378,7 @@ public class DevicesControllerTests
 		Assert.Equal(request.State, responseDto.State);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.UpdateDevice(It.IsAny<Device>()), Times.Once);
+			serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -426,7 +424,7 @@ public class DevicesControllerTests
 		var responseDto = Assert.IsType<List<string>>(response.Payload);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.UpdateDevice(It.IsAny<Device>()), Times.Never);
+			serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()), Times.Never);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -453,11 +451,10 @@ public class DevicesControllerTests
 		};
 		
 		_mockDeviceService.Setup(serv =>
-				serv.UpdateDevice(It.IsAny<Device>()))
+				serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()))
 			.ReturnsAsync(new ServiceResult<Device>()
 			{
 				IsSuccess = false,
-				StatusCode = StatusCodes.Status404NotFound,
 				Errors = ["Device not found"]
 			});
 
@@ -472,7 +469,7 @@ public class DevicesControllerTests
 		Assert.IsType<List<string>>(response.Payload);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.UpdateDevice(It.IsAny<Device>()), Times.Once);
+			serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -508,7 +505,7 @@ public class DevicesControllerTests
 		};
 
 		_mockDeviceService.Setup(serv =>
-				serv.UpdateDevice(It.IsAny<Device>()))
+				serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()))
 			.Throws(new Exception());
 		
 		// Act

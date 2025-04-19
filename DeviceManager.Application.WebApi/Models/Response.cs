@@ -2,17 +2,8 @@
 
 namespace DeviceManager.Application.WebApi.Models;
 
-public class Response
+public class Response(object? payload)
 {
-	[JsonPropertyName("statusCode")]
-	public int StatusCode { get; set; }
-	
 	[JsonPropertyName("payload")]
-	public object? Payload { get; set; }
-
-	public Response(int statusCode, object? payload)
-	{
-		StatusCode = statusCode;
-		Payload = payload;
-	}
+	public object? Payload { get; set; } = payload;
 }

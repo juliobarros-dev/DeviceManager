@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DeviceManager.Domain.Models\DeviceManager.Domain.Models.csproj" />
+<!--      <ProjectReference Include="..\DeviceManager.Infrastructure.Database\DeviceManager.Infrastructure.Database.csproj" />-->
     </ItemGroup>
 
     <ItemGroup>

@@ -8,16 +8,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Add Controllers.Delete tests">
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" afterDir="false" />
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Models/Response.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Models/Response.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Models/Device.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Models/Device.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/DeviceManager.Domain.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/DeviceManager.Domain.Services.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Models/ServiceResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Models/ServiceResult.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/DeviceManager.Infrastructure.Database.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/DeviceManager.Infrastructure.Database.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
-      <workItem from="1744952775944" duration="29724000" />
+      <workItem from="1744952775944" duration="39704000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -156,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745028443731</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Adjust dependency injection">
+      <option name="closed" value="true" />
+      <created>1745030046890</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1745030046890</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +194,7 @@
     <MESSAGE value="Add Controllers.Fetch tests" />
     <MESSAGE value="Add Controllers.Update tests" />
     <MESSAGE value="Add Controllers.Delete tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Controllers.Delete tests" />
+    <MESSAGE value="Adjust dependency injection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjust dependency injection" />
   </component>
 </project>

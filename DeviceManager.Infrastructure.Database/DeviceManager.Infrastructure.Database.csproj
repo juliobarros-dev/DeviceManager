@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\DeviceManager.Domain.Models\DeviceManager.Domain.Models.csproj" />
       <ProjectReference Include="..\DeviceManager.Domain.Services\DeviceManager.Domain.Services.csproj" />
+<!--      <ProjectReference Include="..\DeviceManager.Application.WebApi\DeviceManager.Application.WebApi.csproj" />-->
     </ItemGroup>
 
 </Project>
