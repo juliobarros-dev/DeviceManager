@@ -8,11 +8,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Update Device working">
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="update gitignore">
+      <change afterPath="$PROJECT_DIR$/Docker/Local/Application/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Docker/Local/Application/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Docker/Local/Infrastructure/Database/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/appsettings.Development.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +34,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e236b3163462f9f3c28dda0a52bc1f5ad052312cec3f621b92f8699fcd6243/EntityGraphAttacher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6f937e7fde51c3ca061c59112cdd35b76a72e9ef8821ac361c6ef71e90ea88/ControllerEndpointRouteBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/JulioNascimento/Documents/Julio Barros/Projetos/DeviceManager/DeviceManager.Application.WebApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/JulioNascimento/Documents/Julio Barros/Projetos/DeviceManager/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/JulioNascimento/Documents/Julio Barros/Projetos/DeviceManager/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -104,7 +109,7 @@
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
       <workItem from="1744952775944" duration="39704000" />
-      <workItem from="1745082745718" duration="14820000" />
+      <workItem from="1745082745718" duration="18664000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -218,7 +223,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745098294926</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Bug fix on update flow">
+      <option name="closed" value="true" />
+      <created>1745099330344</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1745099330344</updated>
+    </task>
+    <task id="LOCAL-00016" summary="update gitignore">
+      <option name="closed" value="true" />
+      <created>1745099531042</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1745099531042</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,7 +274,9 @@
     <MESSAGE value="Fetch device by Id working" />
     <MESSAGE value="Delete Device working" />
     <MESSAGE value="Update Device working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Device working" />
+    <MESSAGE value="Bug fix on update flow" />
+    <MESSAGE value="update gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="update gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -270,19 +293,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs</url>
-          <line>93</line>
-          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Application.WebApi\Controllers\v1\DevicesController.cs" containingFunctionPresentation="Method 'FetchDevice'">
-            <startOffsets>
-              <option value="2882" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2883" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs</url>
@@ -309,32 +319,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs</url>
-          <line>56</line>
-          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Infrastructure.Database\Implementations\DeviceRepository.cs" containingFunctionPresentation="Method 'UpdateDeviceAsync'">
-            <startOffsets>
-              <option value="1666" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1667" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs</url>
-          <line>147</line>
-          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Application.WebApi\Controllers\v1\DevicesController.cs" containingFunctionPresentation="Method 'UpdateDevice'">
-            <startOffsets>
-              <option value="4295" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4341" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

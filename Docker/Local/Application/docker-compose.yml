@@ -1,0 +1,17 @@
+﻿services:
+  webapi:
+    build:
+      context: ../../../
+      dockerfile: Docker/Local/Application/Dockerfile
+    container_name: device_manager_api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=postgres;Username=postgres;Password=admin"
+    ports:
+      - "7019:8080"
+    networks:
+      - deviceManager-net
+
+networks:
+  deviceManager-net:
+    external: true

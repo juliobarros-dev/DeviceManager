@@ -49,4 +49,10 @@ app.MapControllers();
 
 app.UsePathBase("/device-manager");
 
+using (var scope = app.Services.CreateScope())
+{
+	var db = scope.ServiceProvider.GetRequiredService<DeviceManagerDbContext>();
+	db.Database.Migrate();
+}
+
 app.Run();
