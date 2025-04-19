@@ -25,15 +25,8 @@ public class DevicesControllerTests
 	{
 		_mockDeviceService = new Mock<IDeviceService>();
 		_mockLogger = new Mock<ILogger<DevicesController>>();
-		
-		var services = new ServiceCollection();
 
-		services.AddScoped(_ => _mockDeviceService.Object);
-		services.AddScoped(_ => _mockLogger.Object);
-
-		var serviceProvider = services.BuildServiceProvider();
-
-		_sut = new DevicesController(serviceProvider);
+		_sut = new DevicesController(_mockDeviceService.Object, _mockLogger.Object);
 	}
 
 	#region Create

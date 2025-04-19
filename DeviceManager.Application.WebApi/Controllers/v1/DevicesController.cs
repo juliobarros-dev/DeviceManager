@@ -3,7 +3,6 @@ using DeviceManager.Application.WebApi.Dtos;
 using DeviceManager.Application.WebApi.Models;
 using DeviceManager.Domain.Services.Interfaces;
 using DeviceManager.Domain.Services.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeviceManager.Application.WebApi.Controllers.v1;
@@ -13,11 +12,9 @@ namespace DeviceManager.Application.WebApi.Controllers.v1;
 [Produces("application/json")]
 [Consumes("application/json")]
 [Route("v{version:apiVersion}/[controller]")]
-public class DevicesController(IServiceProvider serviceProvider) : ControllerBase
+public class DevicesController(IDeviceService deviceService, ILogger<DevicesController> logger) : ControllerBase
 {
 	private const string ErrorMessage = "Something went wrong, please try again";
-	private readonly IDeviceService _deviceService = serviceProvider.GetRequiredService<IDeviceService>();
-	private readonly ILogger<DevicesController> _logger = serviceProvider.GetRequiredService<ILogger<DevicesController>>();
 	
 	[HttpPost]
 	[ProducesResponseType(201)]
@@ -25,7 +22,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> CreateDevice([FromBody] DeviceRequestDto deviceDto)
 	{
-		_logger.LogDebug($"Method: {nameof(CreateDevice)}");
+		logger.LogDebug($"Method: {nameof(CreateDevice)}");
 		List<string> errors = [];
 		try
 		{
@@ -44,8 +41,8 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 
 			var domainDevice = deviceDto.ToCreateDomain();
 
-			_logger.LogDebug($"Calling: {nameof(_deviceService.AddDevice)}");
-			var serviceResult = await _deviceService.AddDevice(domainDevice);
+			logger.LogDebug($"Calling: {nameof(deviceService.AddDevice)}");
+			var serviceResult = await deviceService.AddDevice(domainDevice);
 
 			var responseDto = new DeviceResponseDto(serviceResult.Data!);
 
@@ -55,7 +52,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Unexpected error when creating device");
+			logger.LogError(ex, "Unexpected error when creating device");
 			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
@@ -67,11 +64,11 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> FetchDevices([FromQuery] RequestFilters filters)
 	{
-		_logger.LogDebug($"Method: {nameof(FetchDevices)}");
+		logger.LogDebug($"Method: {nameof(FetchDevices)}");
 		try
 		{
-			_logger.LogDebug($"Calling: {nameof(_deviceService.GetDevices)}");
-			var serviceResult = await _deviceService.GetDevices(filters);
+			logger.LogDebug($"Calling: {nameof(deviceService.GetDevices)}");
+			var serviceResult = await deviceService.GetDevices(filters);
 
 			var responseDtoList = serviceResult.DataCollection.Select(device => new DeviceResponseDto(device)).ToList();
 
@@ -81,7 +78,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Unexpected error when fetching devices");
+			logger.LogError(ex, "Unexpected error when fetching devices");
 			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
@@ -95,11 +92,11 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> FetchDevice([FromRoute] int id)
 	{
-		_logger.LogDebug($"Method: {nameof(FetchDevice)}");
+		logger.LogDebug($"Method: {nameof(FetchDevice)}");
 		try
 		{
-			_logger.LogDebug($"Calling: {nameof(_deviceService.GetDevice)}");
-			var serviceResult = await _deviceService.GetDevice(id);
+			logger.LogDebug($"Calling: {nameof(deviceService.GetDevice)}");
+			var serviceResult = await deviceService.GetDevice(id);
 
 			if (serviceResult.IsSuccess is false)
 			{
@@ -116,7 +113,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Unexpected error when fetching device");
+			logger.LogError(ex, "Unexpected error when fetching device");
 			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
@@ -131,7 +128,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> UpdateDevice([FromRoute] int id, [FromBody] DeviceRequestDto deviceDto)
 	{
-		_logger.LogDebug($"Method: {nameof(UpdateDevice)}");
+		logger.LogDebug($"Method: {nameof(UpdateDevice)}");
 		List<string> errors = [];
 		try
 		{
@@ -150,8 +147,8 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 
 			var domainDevice = deviceDto.ToUpdateDomain();
 
-			_logger.LogDebug($"Calling: {nameof(_deviceService.UpdateDevice)}");
-			var serviceResult = await _deviceService.UpdateDevice(domainDevice);
+			logger.LogDebug($"Calling: {nameof(deviceService.UpdateDevice)}");
+			var serviceResult = await deviceService.UpdateDevice(domainDevice);
 
 			if (serviceResult.IsSuccess is false)
 			{
@@ -168,7 +165,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Unexpected error when updating device");
+			logger.LogError(ex, "Unexpected error when updating device");
 			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);
@@ -182,11 +179,11 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 	[ProducesResponseType(500)]
 	public async Task<IActionResult> DeleteDevice([FromRoute] int id)
 	{
-		_logger.LogDebug($"Method: {nameof(DeleteDevice)}");
+		logger.LogDebug($"Method: {nameof(DeleteDevice)}");
 		try
 		{
-			_logger.LogDebug($"Calling: {nameof(_deviceService.DeleteDevice)}");
-			var serviceResult = await _deviceService.DeleteDevice(id);
+			logger.LogDebug($"Calling: {nameof(deviceService.DeleteDevice)}");
+			var serviceResult = await deviceService.DeleteDevice(id);
 
 			if (serviceResult.IsSuccess) return NoContent();
 			
@@ -196,7 +193,7 @@ public class DevicesController(IServiceProvider serviceProvider) : ControllerBas
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Unexpected error when deleting device");
+			logger.LogError(ex, "Unexpected error when deleting device");
 			var response = new Response(StatusCodes.Status500InternalServerError, ErrorMessage);
 
 			return StatusCode(StatusCodes.Status500InternalServerError, response);

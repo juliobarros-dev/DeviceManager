@@ -10,4 +10,8 @@
       <ProjectReference Include="..\DeviceManager.Domain.Models\DeviceManager.Domain.Models.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    </ItemGroup>
+
 </Project>

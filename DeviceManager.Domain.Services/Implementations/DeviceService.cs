@@ -4,8 +4,10 @@ using DeviceManager.Domain.Services.Models;
 
 namespace DeviceManager.Domain.Services.Implementations;
 
-public class DeviceService : IDeviceService
+public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 {
+	private readonly IDeviceRepository _deviceRepository = deviceRepository;
+
 	public Task<ServiceResult<Device>> AddDevice(Device device)
 	{
 		throw new NotImplementedException();

@@ -8,9 +8,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Add Controllers.Update tests">
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Add Controllers.Delete tests">
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/DeviceManager.Domain.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/DeviceManager.Domain.Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/DeviceManager.Infrastructure.Database.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/DeviceManager.Infrastructure.Database.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
-      <workItem from="1744952775944" duration="28378000" />
+      <workItem from="1744952775944" duration="29724000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -141,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745027569360</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add Controllers.Delete tests">
+      <option name="closed" value="true" />
+      <created>1745028443731</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1745028443731</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +182,7 @@
     <MESSAGE value="Add Controllers.Create tests" />
     <MESSAGE value="Add Controllers.Fetch tests" />
     <MESSAGE value="Add Controllers.Update tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Controllers.Update tests" />
+    <MESSAGE value="Add Controllers.Delete tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Controllers.Delete tests" />
   </component>
 </project>

@@ -2,6 +2,7 @@ using Asp.Versioning;
 using DeviceManager.Application.WebApi.Extensions;
 using DeviceManager.Domain.Services.Implementations;
 using DeviceManager.Domain.Services.Interfaces;
+using DeviceManager.Infrastructure.Database.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Configuration
 	.AddEnvironmentVariables();
 
 builder.Services.AddScoped<IDeviceService, DeviceService>();
+builder.Services.AddScoped<IDeviceRepository, DeviceRepository>();
 
 builder.Services.AddControllers();
 
