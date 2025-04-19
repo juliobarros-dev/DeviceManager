@@ -86,7 +86,9 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 			return result;
 		}
 
-		var updatedDevice = await deviceRepository.UpdateDeviceAsync(deviceToUpdate);
+		deviceToUpdate.CreationTime = databaseDevice.CreationTime;
+
+		var updatedDevice = await deviceRepository.UpdateDeviceAsync(id, deviceToUpdate);
 
 		result.IsSuccess = true;
 		result.Data = updatedDevice;

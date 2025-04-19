@@ -48,16 +48,16 @@ public class DeviceRepository(IDeviceManagerDbContext dbContext) : IDeviceReposi
 
 	public async Task<DomainDevice?> GetDeviceAsync(int id)
 	{
-		var databaseDevice = await dbContext.Devices.FindAsync(id);
+		var databaseDevice = await dbContext.Devices.AsNoTracking().FirstAsync(dev => dev.Id == id);
 
 		return databaseDevice?.ToDomain();
 	}
 
-	public async Task<DomainDevice> UpdateDeviceAsync(DomainDevice deviceToUpdate)
+	public async Task<DomainDevice> UpdateDeviceAsync(int id, DomainDevice deviceToUpdate)
 	{
 		var databaseDevice = new Device()
 		{
-			Id = deviceToUpdate.Id,
+			Id = id,
 			Name = deviceToUpdate.Name,
 			Brand = deviceToUpdate.Brand,
 			State = deviceToUpdate.State,
