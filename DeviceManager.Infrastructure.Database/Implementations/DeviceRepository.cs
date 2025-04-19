@@ -1,6 +1,9 @@
-﻿using DeviceManager.Domain.Services.Interfaces;
+﻿using DeviceManager.Domain.Models.Enums;
+using DeviceManager.Domain.Services.Interfaces;
+using DeviceManager.Domain.Services.Models;
 using DeviceManager.Infrastructure.Database.Interfaces;
 using DeviceManager.Infrastructure.Database.Models;
+using Microsoft.EntityFrameworkCore;
 using DomainDevice = DeviceManager.Domain.Models.Device;
 
 namespace DeviceManager.Infrastructure.Database.Implementations;
@@ -24,9 +27,23 @@ public class DeviceRepository(IDeviceManagerDbContext dbContext) : IDeviceReposi
 		return databaseDevice.ToDomain();
 	}
 
-	public Task<List<DomainDevice>> GetDevicesAsync()
+	public async Task<List<DomainDevice>> GetDevicesAsync(RequestFilters filters)
 	{
-		throw new NotImplementedException();
+		var query = dbContext.Devices.AsNoTracking().AsQueryable();
+
+		if (string.IsNullOrWhiteSpace(filters.Brand) is false)
+		{
+			query = query.Where(dev => dev.Brand.ToLower() == filters.Brand.ToLower());
+		}
+
+		if (Enum.TryParse<StateType>(filters.State, true, out var parsedState))
+		{
+			query = query.Where(dev => dev.State == parsedState);
+		}
+
+		var deviceList = await query.ToListAsync();
+
+		return deviceList.Select(dev => dev.ToDomain()).ToList();
 	}
 
 	public Task<DomainDevice?> GetDeviceAsync(int id)

@@ -22,15 +22,7 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 
 	public async Task<ServiceResult<Device>> GetDevices(RequestFilters filters)
 	{
-		var devices = await deviceRepository.GetDevicesAsync();
-
-		if (filters.Brand is not null || filters.State is not null)
-		{
-			devices = devices
-				.Where(dev => dev.Brand == filters.Brand)
-				.Where(dev => string.Equals(dev.State.ToString(), filters.State, StringComparison.InvariantCultureIgnoreCase))
-				.ToList();
-		}
+		var devices = await deviceRepository.GetDevicesAsync(filters);
 
 		return new ServiceResult<Device>()
 		{
