@@ -22,5 +22,10 @@ namespace DeviceManager.Infrastructure.Database.Context
 			
 			base.OnModelCreating(modelBuilder);
 		}
+
+		public void CleanChangeTracker()
+		{
+			base.ChangeTracker.Clear();
+		}
 	}
 }

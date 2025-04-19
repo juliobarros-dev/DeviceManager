@@ -53,9 +53,22 @@ public class DeviceRepository(IDeviceManagerDbContext dbContext) : IDeviceReposi
 		return databaseDevice?.ToDomain();
 	}
 
-	public Task<DomainDevice> UpdateDeviceAsync(DomainDevice deviceToUpdate)
+	public async Task<DomainDevice> UpdateDeviceAsync(DomainDevice deviceToUpdate)
 	{
-		throw new NotImplementedException();
+		var databaseDevice = new Device()
+		{
+			Id = deviceToUpdate.Id,
+			Name = deviceToUpdate.Name,
+			Brand = deviceToUpdate.Brand,
+			State = deviceToUpdate.State,
+			CreationTime = deviceToUpdate.CreationTime
+		};
+
+		dbContext.Devices.Update(databaseDevice);
+
+		await dbContext.SaveChangesAsync();
+
+		return databaseDevice.ToDomain();
 	}
 
 	public async Task DeleteAsync(int id)

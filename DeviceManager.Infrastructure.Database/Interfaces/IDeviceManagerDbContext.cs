@@ -7,4 +7,5 @@ public interface IDeviceManagerDbContext
 {
 	public DbSet<Device> Devices { get; set; }
 	Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+	void CleanChangeTracker();
 }

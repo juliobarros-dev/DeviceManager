@@ -66,7 +66,7 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 			return result;
 		}
 
-		if (databaseDevice.State == StateType.InUse&&
+		if ((databaseDevice.State == StateType.InUse && deviceToUpdate.State == StateType.InUse) &&
 		    (databaseDevice.Name != deviceToUpdate.Name || 
 		     databaseDevice.Brand != deviceToUpdate.Brand))
 		{
@@ -76,18 +76,20 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 			return result;
 		}
 
-		databaseDevice.State = deviceToUpdate.State;
-		
-		if (databaseDevice.State != StateType.InUse)
+		if (databaseDevice.State == deviceToUpdate.State &&
+		    databaseDevice.Name == deviceToUpdate.Name &&
+		    databaseDevice.Brand == deviceToUpdate.Brand)
 		{
-			databaseDevice.Name = deviceToUpdate.Name;
-			databaseDevice.Brand = deviceToUpdate.Brand;
+			result.IsSuccess = false;
+			result.Errors = ["No field to update"];
+
+			return result;
 		}
 
-		await deviceRepository.UpdateDeviceAsync(databaseDevice);
+		var updatedDevice = await deviceRepository.UpdateDeviceAsync(deviceToUpdate);
 
 		result.IsSuccess = true;
-		result.Data = databaseDevice;
+		result.Data = updatedDevice;
 
 		return result;
 	}

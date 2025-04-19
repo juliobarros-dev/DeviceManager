@@ -8,12 +8,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Fetch device by Id working">
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Delete Device working">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Context/DeviceManagerDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Context/DeviceManagerDbContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Interfaces/IDeviceManagerDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Interfaces/IDeviceManagerDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +30,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb1aa1decdd78757069bb22ccf8442306e771edb10f1c6de6755a69622867e/InternalServerError.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e236b3163462f9f3c28dda0a52bc1f5ad052312cec3f621b92f8699fcd6243/EntityGraphAttacher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6f937e7fde51c3ca061c59112cdd35b76a72e9ef8821ac361c6ef71e90ea88/ControllerEndpointRouteBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/JulioNascimento/Documents/Julio Barros/Projetos/DeviceManager/DeviceManager.Application.WebApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/JulioNascimento/Documents/Julio Barros/Projetos/DeviceManager/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -103,7 +107,7 @@
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
       <workItem from="1744952775944" duration="39704000" />
-      <workItem from="1745082745718" duration="11007000" />
+      <workItem from="1745082745718" duration="13749000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -201,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745093122072</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Delete Device working">
+      <option name="closed" value="true" />
+      <created>1745095632973</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745095632973</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +246,8 @@
     <MESSAGE value="AddDeviceAsync working on 1st test" />
     <MESSAGE value="FetchAllDevices working with filters" />
     <MESSAGE value="Fetch device by Id working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fetch device by Id working" />
+    <MESSAGE value="Delete Device working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete Device working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -254,19 +267,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs</url>
-          <line>65</line>
-          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Application.WebApi\Controllers\v1\DevicesController.cs" containingFunctionPresentation="Method 'FetchDevices'">
-            <startOffsets>
-              <option value="2069" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2070" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs</url>
           <line>93</line>
           <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Application.WebApi\Controllers\v1\DevicesController.cs" containingFunctionPresentation="Method 'FetchDevice'">
             <startOffsets>
@@ -283,13 +283,39 @@
           <line>180</line>
           <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Application.WebApi\Controllers\v1\DevicesController.cs" containingFunctionPresentation="Method 'DeleteDevice'">
             <startOffsets>
-              <option value="5204" />
+              <option value="5205" />
             </startOffsets>
             <endOffsets>
-              <option value="5205" />
+              <option value="5206" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs</url>
+          <line>53</line>
+          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Domain.Services\Implementations\DeviceService.cs" containingFunctionPresentation="Method 'UpdateDevice'">
+            <startOffsets>
+              <option value="1256" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1257" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs</url>
+          <line>56</line>
+          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Infrastructure.Database\Implementations\DeviceRepository.cs" containingFunctionPresentation="Method 'UpdateDeviceAsync'">
+            <startOffsets>
+              <option value="1625" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1626" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
