@@ -14,4 +14,3 @@
 
 networks:
   deviceManager-net:
-    external: true

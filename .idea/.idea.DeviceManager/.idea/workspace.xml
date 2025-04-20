@@ -8,15 +8,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="update gitignore">
-      <change afterPath="$PROJECT_DIR$/Docker/Local/Application/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Docker/Local/Application/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Docker/Local/Infrastructure/Database/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.sh" afterDir="false" />
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Dockerize application, setup script and seed db">
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Utils/RemoveVersionParameterFilter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Utils/ReplaceVersionWithExactValueInPathFilter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docker/Local/Application/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/Local/Application/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docker/Local/Infrastructure/Database/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/Local/Infrastructure/Database/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +32,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/696ea149e41ddc60bdd9238370d01ba5f417a4a91ce8ac42c17d4eee0afa038/RelationalConnection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb1aa1decdd78757069bb22ccf8442306e771edb10f1c6de6755a69622867e/InternalServerError.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e236b3163462f9f3c28dda0a52bc1f5ad052312cec3f621b92f8699fcd6243/EntityGraphAttacher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6f937e7fde51c3ca061c59112cdd35b76a72e9ef8821ac361c6ef71e90ea88/ControllerEndpointRouteBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/JulioNascimento/Documents/Julio Barros/Projetos/DeviceManager/DeviceManager.Application.WebApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
@@ -52,22 +56,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.DeviceManager.Application.WebApi: http.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ccf748ea-08b2-42c1-ba74-0c83a1640307.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;aws.lambda&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.DeviceManager.Application.WebApi: Development.executor": "Debug",
+    ".NET Launch Settings Profile.DeviceManager.Application.WebApi: Rider.executor": "Debug",
+    ".NET Launch Settings Profile.DeviceManager.Application.WebApi: http.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ccf748ea-08b2-42c1-ba74-0c83a1640307.executor": "Debug",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "aws.lambda",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.DeviceManager.Application.WebApi: http">
+}]]></component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.DeviceManager.Application.WebApi: Rider">
+    <configuration name="DeviceManager.Application.WebApi: Development" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net9.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="Development" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="DeviceManager.Application.WebApi: Rider" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net9.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="Rider" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <configuration name="DeviceManager.Application.WebApi: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net9.0" />
@@ -98,6 +134,12 @@
         <option name="Build" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue=".NET Launch Settings Profile.DeviceManager.Application.WebApi: Rider" />
+        <item itemvalue=".NET Launch Settings Profile.DeviceManager.Application.WebApi: Development" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -109,7 +151,7 @@
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
       <workItem from="1744952775944" duration="39704000" />
-      <workItem from="1745082745718" duration="18664000" />
+      <workItem from="1745082745718" duration="23224000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -239,7 +281,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745099531042</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Dockerize application, setup script and seed db">
+      <option name="closed" value="true" />
+      <created>1745103837530</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1745103837530</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,37 +326,12 @@
     <MESSAGE value="Update Device working" />
     <MESSAGE value="Bug fix on update flow" />
     <MESSAGE value="update gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="update gitignore" />
+    <MESSAGE value="Dockerize application, setup script and seed db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dockerize application, setup script and seed db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs</url>
-          <line>23</line>
-          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Application.WebApi\Controllers\v1\DevicesController.cs" containingFunctionPresentation="Method 'CreateDevice'">
-            <startOffsets>
-              <option value="825" />
-            </startOffsets>
-            <endOffsets>
-              <option value="826" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs</url>
-          <line>180</line>
-          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Application.WebApi\Controllers\v1\DevicesController.cs" containingFunctionPresentation="Method 'DeleteDevice'">
-            <startOffsets>
-              <option value="5205" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5206" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs</url>
           <line>53</line>

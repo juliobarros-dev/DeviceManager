@@ -9,17 +9,26 @@ namespace DeviceManager.Application.WebApi.Controllers.v1;
 
 [ApiController]
 [ApiVersion("1.0")]
+[Route("v{version:apiVersion}/[controller]")]
 [Produces("application/json")]
 [Consumes("application/json")]
-[Route("v{version:apiVersion}/[controller]")]
+[ApiExplorerSettings(GroupName = "v1")]
 public class DevicesController(IDeviceService deviceService, ILogger<DevicesController> logger) : ControllerBase
 {
 	private const string ErrorMessage = "Something went wrong, please try again";
 	
+	/// <summary>
+	/// Creates a new device.
+	/// </summary>
+	/// <param name="deviceDto">The device data.</param>
+	/// <returns>Created device.</returns>
+	/// <response code="201">Device created successfully.</response>
+	/// <response code="400">Validation errors or Id provided.</response>
+	/// <response code="500">Unexpected error occurred.</response>
 	[HttpPost]
-	[ProducesResponseType(201)]
-	[ProducesResponseType(400)]
-	[ProducesResponseType(500)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status201Created)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
 	public async Task<IActionResult> CreateDevice([FromBody] DeviceRequestDto deviceDto)
 	{
 		logger.LogDebug($"Method: {nameof(CreateDevice)}");
@@ -59,9 +68,15 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 		}
 	}
 
+	/// <summary>
+	/// Gets all devices.
+	/// </summary>
+	/// <returns>List of devices.</returns>
+	/// <response code="200">Devices returned successfully.</response>
+	/// <response code="500">Unexpected error occurred.</response>
 	[HttpGet]
-	[ProducesResponseType(200)]
-	[ProducesResponseType(500)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status200OK)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
 	public async Task<IActionResult> FetchDevices([FromQuery] RequestFilters filters)
 	{
 		logger.LogDebug($"Method: {nameof(FetchDevices)}");
@@ -85,11 +100,18 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 		}
 	}
 	
-	[HttpGet]
-	[Route("{id:int}")]
-	[ProducesResponseType(200)]
-	[ProducesResponseType(404)]
-	[ProducesResponseType(500)]
+	/// <summary>
+	/// Gets a device by its ID.
+	/// </summary>
+	/// <param name="id">Device ID.</param>
+	/// <returns>The requested device.</returns>
+	/// <response code="200">Device found.</response>
+	/// <response code="404">Device not found.</response>
+	/// <response code="500">Unexpected error occurred.</response>
+	[HttpGet("{id}")]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status200OK)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
 	public async Task<IActionResult> FetchDevice([FromRoute] int id)
 	{
 		logger.LogDebug($"Method: {nameof(FetchDevice)}");
@@ -120,12 +142,21 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 		}
 	}
 
-	[HttpPatch]
-	[Route("{id:int}")]
-	[ProducesResponseType(200)]
-	[ProducesResponseType(400)]
-	[ProducesResponseType(404)]
-	[ProducesResponseType(500)]
+	/// <summary>
+	/// Updates an existing device.
+	/// </summary>
+	/// <param name="id">Device ID.</param>
+	/// <param name="deviceDto">Updated device data.</param>
+	/// <returns>Updated device.</returns>
+	/// <response code="200">Device updated successfully.</response>
+	/// <response code="400">Validation errors or missing ID.</response>
+	/// <response code="404">Device not found.</response>
+	/// <response code="500">Unexpected error occurred.</response>
+	[HttpPut]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status200OK)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
 	public async Task<IActionResult> UpdateDevice([FromRoute] int id, [FromBody] DeviceRequestDto deviceDto)
 	{
 		logger.LogDebug($"Method: {nameof(UpdateDevice)}");
@@ -172,11 +203,18 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 		}
 	}
 
-	[HttpDelete]
-	[Route("{id:int}")]
-	[ProducesResponseType(204)]
-	[ProducesResponseType(404)]
-	[ProducesResponseType(500)]
+	/// <summary>
+	/// Deletes a device by its ID.
+	/// </summary>
+	/// <param name="id">Device ID.</param>
+	/// <returns>Empty response.</returns>
+	/// <response code="204">Device deleted successfully.</response>
+	/// <response code="404">Device not found.</response>
+	/// <response code="500">Unexpected error occurred.</response>
+	[HttpDelete("{id}")]
+	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
+	[ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
 	public async Task<IActionResult> DeleteDevice([FromRoute] int id)
 	{
 		logger.LogDebug($"Method: {nameof(DeleteDevice)}");
