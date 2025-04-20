@@ -8,17 +8,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Dockerize application, setup script and seed db">
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Utils/RemoveVersionParameterFilter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Utils/ReplaceVersionWithExactValueInPathFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Document API">
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/CreateDeviceRequestDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/UpdateDeviceRequestDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/DeviceManager.Application.WebApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/Local/Application/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/Local/Application/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/Local/Infrastructure/Database/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/Local/Infrastructure/Database/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceDtoBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceDtoBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceRequestDtoBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceResponseDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/DeviceResponseDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +148,7 @@
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
       <workItem from="1744952775944" duration="39704000" />
-      <workItem from="1745082745718" duration="23224000" />
+      <workItem from="1745082745718" duration="24206000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -289,7 +286,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745103837530</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Document API">
+      <option name="closed" value="true" />
+      <created>1745107863769</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1745107863769</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +332,8 @@
     <MESSAGE value="Bug fix on update flow" />
     <MESSAGE value="update gitignore" />
     <MESSAGE value="Dockerize application, setup script and seed db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dockerize application, setup script and seed db" />
+    <MESSAGE value="Document API" />
+    <option name="LAST_COMMIT_MESSAGE" value="Document API" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

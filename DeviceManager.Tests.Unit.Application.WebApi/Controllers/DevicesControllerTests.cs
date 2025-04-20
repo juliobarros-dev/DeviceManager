@@ -34,7 +34,7 @@ public class DevicesControllerTests
 	public async Task CreateDevice__ShouldReturnCreated__GivenValidRequest()
 	{
 		//Arrange
-		var request = new DeviceRequestDto()
+		var request = new CreateDeviceRequestDto()
 		{
 			Name = "iPhone",
 			Brand = "Apple",
@@ -92,7 +92,7 @@ public class DevicesControllerTests
 	public async Task CreateDevice__ShouldReturnBadRequest__GivenInvalidRequest()
 	{
 		//Arrange
-		var request = new DeviceRequestDto()
+		var request = new CreateDeviceRequestDto()
 		{
 			Name = "",
 			Brand = "Apple",
@@ -128,7 +128,7 @@ public class DevicesControllerTests
 	public async Task CreateDevice__ShouldInternalServerError__GivenException()
 	{
 		//Arrange
-		var request = new DeviceRequestDto()
+		var request = new CreateDeviceRequestDto()
 		{
 			Name = "iPhone",
 			Brand = "Apple",
@@ -335,7 +335,7 @@ public class DevicesControllerTests
 		//Arrange
 		const int deviceId = 2;
 		
-		var request = new DeviceRequestDto()
+		var request = new UpdateDeviceRequestDto()
 		{
 			Id = deviceId,
 			Name = "iPhone",
@@ -396,7 +396,7 @@ public class DevicesControllerTests
 		//Arrange
 		const int deviceId = 2;
 		
-		var request = new DeviceRequestDto()
+		var request = new UpdateDeviceRequestDto()
 		{
 			Id = 1,
 			Name = "iPhone",
@@ -442,7 +442,7 @@ public class DevicesControllerTests
 		//Arrange
 		const int deviceId = 2;
 		
-		var request = new DeviceRequestDto()
+		var request = new UpdateDeviceRequestDto()
 		{
 			Id = 2,
 			Name = "iPhone",
@@ -487,7 +487,7 @@ public class DevicesControllerTests
 		//Arrange
 		const int deviceId = 2;
 		
-		var request = new DeviceRequestDto()
+		var request = new UpdateDeviceRequestDto()
 		{
 			Id = deviceId,
 			Name = "iPhone",

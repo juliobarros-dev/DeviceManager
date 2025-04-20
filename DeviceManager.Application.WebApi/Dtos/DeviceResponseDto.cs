@@ -1,9 +1,14 @@
-﻿using DeviceManager.Domain.Models;
+﻿using System.Text.Json.Serialization;
+using DeviceManager.Domain.Models;
 
 namespace DeviceManager.Application.WebApi.Dtos;
 
 public class DeviceResponseDto : DeviceDtoBase
 {
+	[JsonPropertyName("id")]
+	public int? Id { get; set; }
+	
+	[JsonPropertyName("creationTime")]
 	public DateTime CreationTime { get; set; }
 
 	public DeviceResponseDto(Device domainDevice)

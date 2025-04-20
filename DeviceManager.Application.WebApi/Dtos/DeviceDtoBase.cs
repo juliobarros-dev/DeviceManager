@@ -4,9 +4,6 @@ namespace DeviceManager.Application.WebApi.Dtos;
 
 public class DeviceDtoBase
 {
-	[JsonPropertyName("id")]
-	public int? Id { get; set; }
-	
 	[JsonPropertyName("name")]
 	public string Name { get; set; } = string.Empty;
 	

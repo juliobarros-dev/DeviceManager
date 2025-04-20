@@ -20,7 +20,7 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 	/// <summary>
 	/// Creates a new device.
 	/// </summary>
-	/// <param name="deviceDto">The device data.</param>
+	/// <param name="payload">The device data.</param>
 	/// <returns>Created device.</returns>
 	/// <response code="201">Device created successfully.</response>
 	/// <response code="400">Validation errors or Id provided.</response>
@@ -29,15 +29,13 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 	[ProducesResponseType(typeof(Response), StatusCodes.Status201Created)]
 	[ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
-	public async Task<IActionResult> CreateDevice([FromBody] DeviceRequestDto deviceDto)
+	public async Task<IActionResult> CreateDevice([FromBody] CreateDeviceRequestDto payload)
 	{
 		logger.LogDebug($"Method: {nameof(CreateDevice)}");
 		List<string> errors = [];
 		try
 		{
-			if (deviceDto.Id is not null) errors.Add("To create a new device Id must be null. To update a device, use PUT instead.");
-
-			var (isValid, validationErrors) = deviceDto.Validate();
+			var (isValid, validationErrors) = payload.Validate();
 
 			if (isValid is false) errors.AddRange(validationErrors);
 
@@ -48,7 +46,7 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 				return BadRequest(validationsFailedResponse);
 			}
 
-			var domainDevice = deviceDto.ToCreateDomain();
+			var domainDevice = payload.ToDomain();
 
 			logger.LogDebug($"Calling: {nameof(deviceService.AddDevice)}");
 			var serviceResult = await deviceService.AddDevice(domainDevice);
@@ -146,7 +144,7 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 	/// Updates an existing device.
 	/// </summary>
 	/// <param name="id">Device ID.</param>
-	/// <param name="deviceDto">Updated device data.</param>
+	/// <param name="payload">Updated device data.</param>
 	/// <returns>Updated device.</returns>
 	/// <response code="200">Device updated successfully.</response>
 	/// <response code="400">Validation errors or missing ID.</response>
@@ -157,15 +155,15 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 	[ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
 	[ProducesResponseType(typeof(Response), StatusCodes.Status500InternalServerError)]
-	public async Task<IActionResult> UpdateDevice([FromRoute] int id, [FromBody] DeviceRequestDto deviceDto)
+	public async Task<IActionResult> UpdateDevice([FromRoute] int id, [FromBody] UpdateDeviceRequestDto payload)
 	{
 		logger.LogDebug($"Method: {nameof(UpdateDevice)}");
 		List<string> errors = [];
 		try
 		{
-			if (id != deviceDto.Id) errors.Add("Route Id and Body Id must be the same");
+			if (id != payload.Id) errors.Add("Route Id and Body Id must be the same");
 			
-			var (isValid, validationErrors) = deviceDto.Validate();
+			var (isValid, validationErrors) = payload.Validate();
 
 			if (isValid is false) errors.AddRange(validationErrors);
 
@@ -176,7 +174,7 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 				return BadRequest(validationsFailedResponse);
 			}
 
-			var domainDevice = deviceDto.ToUpdateDomain();
+			var domainDevice = payload.ToDomain();
 
 			logger.LogDebug($"Calling: {nameof(deviceService.UpdateDevice)}");
 			var serviceResult = await deviceService.UpdateDevice(id, domainDevice);
