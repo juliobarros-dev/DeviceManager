@@ -142,6 +142,23 @@ chmod +x setup.sh
 
 ---
 
+## Running Tests 🔬
+
+After cloning the repository, follow these steps to restore dependencies and run the tests:
+
+```bash
+# 1. Restore dependencies
+dotnet restore
+
+# 2. Navigate to the respective test project directory
+# E.g.
+cd DeviceManager.Tests.Unit.Application.WebApi
+
+# 3. Run the tests
+dotnet test
+```
+---
+
 ## 🧑‍💻 Author
 Made with ❤️ by Julio Nascimento
 
