@@ -9,5 +9,5 @@ public interface IDeviceRepository
 	Task<List<Device>> GetDevicesAsync(RequestFilters filters);
 	Task<Device?> GetDeviceAsync(int id);
 	Task<Device> UpdateDeviceAsync(int id, Device deviceToUpdate);
-	Task DeleteAsync(int id);
+	Task DeleteDeviceAsync(int id);
 }

@@ -48,8 +48,8 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 
 			var domainDevice = payload.ToDomain();
 
-			logger.LogDebug($"Calling: {nameof(deviceService.AddDevice)}");
-			var serviceResult = await deviceService.AddDevice(domainDevice);
+			logger.LogDebug($"Calling: {nameof(deviceService.AddDeviceAsync)}");
+			var serviceResult = await deviceService.AddDeviceAsync(domainDevice);
 
 			var responseDto = new DeviceResponseDto(serviceResult.Data!);
 
@@ -80,8 +80,8 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 		logger.LogDebug($"Method: {nameof(FetchDevices)}");
 		try
 		{
-			logger.LogDebug($"Calling: {nameof(deviceService.GetDevices)}");
-			var serviceResult = await deviceService.GetDevices(filters);
+			logger.LogDebug($"Calling: {nameof(deviceService.GetDevicesAsync)}");
+			var serviceResult = await deviceService.GetDevicesAsync(filters);
 
 			var responseDtoList = serviceResult.DataCollection.Select(device => new DeviceResponseDto(device)).ToList();
 
@@ -115,8 +115,8 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 		logger.LogDebug($"Method: {nameof(FetchDevice)}");
 		try
 		{
-			logger.LogDebug($"Calling: {nameof(deviceService.GetDevice)}");
-			var serviceResult = await deviceService.GetDevice(id);
+			logger.LogDebug($"Calling: {nameof(deviceService.GetDeviceAsync)}");
+			var serviceResult = await deviceService.GetDeviceAsync(id);
 
 			if (serviceResult.IsSuccess is false)
 			{
@@ -176,8 +176,8 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 
 			var domainDevice = payload.ToDomain();
 
-			logger.LogDebug($"Calling: {nameof(deviceService.UpdateDevice)}");
-			var serviceResult = await deviceService.UpdateDevice(id, domainDevice);
+			logger.LogDebug($"Calling: {nameof(deviceService.UpdateDeviceAsync)}");
+			var serviceResult = await deviceService.UpdateDeviceAsync(id, domainDevice);
 
 			if (serviceResult.IsSuccess is false)
 			{
@@ -218,8 +218,8 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 		logger.LogDebug($"Method: {nameof(DeleteDevice)}");
 		try
 		{
-			logger.LogDebug($"Calling: {nameof(deviceService.DeleteDevice)}");
-			var serviceResult = await deviceService.DeleteDevice(id);
+			logger.LogDebug($"Calling: {nameof(deviceService.DeleteDeviceAsync)}");
+			var serviceResult = await deviceService.DeleteDeviceAsync(id);
 
 			if (serviceResult.IsSuccess) return NoContent();
 			

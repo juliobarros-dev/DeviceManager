@@ -71,7 +71,7 @@ public class DeviceRepository(IDeviceManagerDbContext dbContext) : IDeviceReposi
 		return databaseDevice.ToDomain();
 	}
 
-	public async Task DeleteAsync(int id)
+	public async Task DeleteDeviceAsync(int id)
 	{
 		await dbContext.Devices
 			.Where(d => d.Id == id)

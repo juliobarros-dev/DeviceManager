@@ -51,7 +51,7 @@ public class DevicesControllerTests
 		};
 
 		_mockDeviceService.Setup(serv =>
-				serv.AddDevice(It.IsAny<Device>()))
+				serv.AddDeviceAsync(It.IsAny<Device>()))
 			.ReturnsAsync(new ServiceResult<Device>()
 			{
 				IsSuccess = true,
@@ -76,7 +76,7 @@ public class DevicesControllerTests
 		Assert.Equal(request.State, responseDto.State);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.AddDevice(It.IsAny<Device>()), Times.Once);
+			serv.AddDeviceAsync(It.IsAny<Device>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -112,7 +112,7 @@ public class DevicesControllerTests
 		Assert.IsType<List<string>>(response.Payload);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.AddDevice(It.IsAny<Device>()), Times.Never);
+			serv.AddDeviceAsync(It.IsAny<Device>()), Times.Never);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -136,7 +136,7 @@ public class DevicesControllerTests
 		};
 
 		_mockDeviceService.Setup(serv =>
-				serv.AddDevice(It.IsAny<Device>()))
+				serv.AddDeviceAsync(It.IsAny<Device>()))
 			.Throws(new Exception());
 
 		// Act
@@ -167,7 +167,7 @@ public class DevicesControllerTests
 	{
 		// Assert
 		_mockDeviceService.Setup(serv =>
-			serv.GetDevices(It.IsAny<RequestFilters>())).ReturnsAsync(
+			serv.GetDevicesAsync(It.IsAny<RequestFilters>())).ReturnsAsync(
 			new ServiceResult<Device>());
 		
 		// Act
@@ -181,7 +181,7 @@ public class DevicesControllerTests
 		Assert.IsType<List<DeviceResponseDto>>(response.Payload);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.GetDevices(It.IsAny<RequestFilters>()), Times.Once);
+			serv.GetDevicesAsync(It.IsAny<RequestFilters>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -198,7 +198,7 @@ public class DevicesControllerTests
 	{
 		// Assert
 		_mockDeviceService.Setup(serv =>
-			serv.GetDevices(It.IsAny<RequestFilters>())).Throws(new Exception());
+			serv.GetDevicesAsync(It.IsAny<RequestFilters>())).Throws(new Exception());
 		
 		// Act
 		var result = await _sut.FetchDevices(new RequestFilters());
@@ -227,7 +227,7 @@ public class DevicesControllerTests
 		const int deviceId = 2;
 		
 		_mockDeviceService.Setup(serv =>
-			serv.GetDevice(It.IsAny<int>()))
+			serv.GetDeviceAsync(It.IsAny<int>()))
 			.ReturnsAsync(
 				new ServiceResult<Device>()
 				{
@@ -247,7 +247,7 @@ public class DevicesControllerTests
 		Assert.IsType<DeviceResponseDto>(response.Payload);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.GetDevice(It.IsAny<int>()), Times.Once);
+			serv.GetDeviceAsync(It.IsAny<int>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -266,7 +266,7 @@ public class DevicesControllerTests
 		const int deviceId = 2;
 		
 		_mockDeviceService.Setup(serv =>
-				serv.GetDevice(It.IsAny<int>()))
+				serv.GetDeviceAsync(It.IsAny<int>()))
 			.ReturnsAsync(
 				new ServiceResult<Device>()
 				{
@@ -286,7 +286,7 @@ public class DevicesControllerTests
 		Assert.IsType<List<string>>(response.Payload);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.GetDevice(It.IsAny<int>()), Times.Once);
+			serv.GetDeviceAsync(It.IsAny<int>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -305,7 +305,7 @@ public class DevicesControllerTests
 		const int deviceId = 2;
 		
 		_mockDeviceService.Setup(serv =>
-			serv.GetDevice(It.IsAny<int>())).Throws(new Exception());
+			serv.GetDeviceAsync(It.IsAny<int>())).Throws(new Exception());
 		
 		// Act
 		var result = await _sut.FetchDevice(deviceId);
@@ -353,7 +353,7 @@ public class DevicesControllerTests
 		};
 
 		_mockDeviceService.Setup(serv =>
-				serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()))
+				serv.UpdateDeviceAsync(It.IsAny<int>(), It.IsAny<Device>()))
 			.ReturnsAsync(new ServiceResult<Device>()
 			{
 				IsSuccess = true,
@@ -378,7 +378,7 @@ public class DevicesControllerTests
 		Assert.Equal(request.State, responseDto.State);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()), Times.Once);
+			serv.UpdateDeviceAsync(It.IsAny<int>(), It.IsAny<Device>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -424,7 +424,7 @@ public class DevicesControllerTests
 		var responseDto = Assert.IsType<List<string>>(response.Payload);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()), Times.Never);
+			serv.UpdateDeviceAsync(It.IsAny<int>(), It.IsAny<Device>()), Times.Never);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -451,7 +451,7 @@ public class DevicesControllerTests
 		};
 		
 		_mockDeviceService.Setup(serv =>
-				serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()))
+				serv.UpdateDeviceAsync(It.IsAny<int>(), It.IsAny<Device>()))
 			.ReturnsAsync(new ServiceResult<Device>()
 			{
 				IsSuccess = false,
@@ -469,7 +469,7 @@ public class DevicesControllerTests
 		Assert.IsType<List<string>>(response.Payload);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()), Times.Once);
+			serv.UpdateDeviceAsync(It.IsAny<int>(), It.IsAny<Device>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -505,7 +505,7 @@ public class DevicesControllerTests
 		};
 
 		_mockDeviceService.Setup(serv =>
-				serv.UpdateDevice(It.IsAny<int>(), It.IsAny<Device>()))
+				serv.UpdateDeviceAsync(It.IsAny<int>(), It.IsAny<Device>()))
 			.Throws(new Exception());
 		
 		// Act
@@ -538,7 +538,7 @@ public class DevicesControllerTests
 		const int deviceId = 1;
 
 		_mockDeviceService.Setup(serv =>
-			serv.DeleteDevice(It.IsAny<int>()))
+			serv.DeleteDeviceAsync(It.IsAny<int>()))
 			.ReturnsAsync(
 				new ServiceResult<Device>()
 				{
@@ -554,7 +554,7 @@ public class DevicesControllerTests
 		Assert.Equal(StatusCodes.Status204NoContent, noContentResult.StatusCode);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.DeleteDevice(It.IsAny<int>()), Times.Once);
+			serv.DeleteDeviceAsync(It.IsAny<int>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -573,7 +573,7 @@ public class DevicesControllerTests
 		const int deviceId = 1;
 
 		_mockDeviceService.Setup(serv =>
-				serv.DeleteDevice(It.IsAny<int>()))
+				serv.DeleteDeviceAsync(It.IsAny<int>()))
 			.ReturnsAsync(
 				new ServiceResult<Device>()
 				{
@@ -593,7 +593,7 @@ public class DevicesControllerTests
 		Assert.IsType<List<string>>(response.Payload);
 		
 		_mockDeviceService.Verify(serv => 
-			serv.DeleteDevice(It.IsAny<int>()), Times.Once);
+			serv.DeleteDeviceAsync(It.IsAny<int>()), Times.Once);
 		
 		_mockLogger.Verify(log => 
 				log.Log(
@@ -612,7 +612,7 @@ public class DevicesControllerTests
 		const int deviceId = 1;
 
 		_mockDeviceService.Setup(serv =>
-				serv.DeleteDevice(It.IsAny<int>()))
+				serv.DeleteDeviceAsync(It.IsAny<int>()))
 			.Throws(new Exception());
 		
 		// Act

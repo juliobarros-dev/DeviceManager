@@ -7,7 +7,7 @@ namespace DeviceManager.Domain.Services.Implementations;
 
 public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 {
-	public async Task<ServiceResult<Device>> AddDevice(Device device)
+	public async Task<ServiceResult<Device>> AddDeviceAsync(Device device)
 	{
 		var result = await deviceRepository.AddDeviceAsync(device);
 
@@ -20,7 +20,7 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 		return response;
 	}
 
-	public async Task<ServiceResult<Device>> GetDevices(RequestFilters filters)
+	public async Task<ServiceResult<Device>> GetDevicesAsync(RequestFilters filters)
 	{
 		var devices = await deviceRepository.GetDevicesAsync(filters);
 
@@ -31,7 +31,7 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 		};
 	}
 
-	public async Task<ServiceResult<Device>> GetDevice(int id)
+	public async Task<ServiceResult<Device>> GetDeviceAsync(int id)
 	{
 		var result = new ServiceResult<Device>();
 		var device = await deviceRepository.GetDeviceAsync(id);
@@ -50,11 +50,11 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 		return result;
 	}
 
-	public async Task<ServiceResult<Device>> UpdateDevice(int id, Device deviceToUpdate)
+	public async Task<ServiceResult<Device>> UpdateDeviceAsync(int id, Device deviceToUpdate)
 	{
 		var result = new ServiceResult<Device>();
 		
-		var response = await GetDevice(id);
+		var response = await GetDeviceAsync(id);
 
 		var databaseDevice = response.Data;
     
@@ -96,11 +96,11 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 		return result;
 	}
 
-	public async Task<ServiceResult<Device>> DeleteDevice(int id)
+	public async Task<ServiceResult<Device>> DeleteDeviceAsync(int id)
 	{
 		var result = new ServiceResult<Device>();
 
-		var response = await GetDevice(id);
+		var response = await GetDeviceAsync(id);
 
 		var deviceToDelete = response.Data;
 
@@ -120,7 +120,7 @@ public class DeviceService(IDeviceRepository deviceRepository) : IDeviceService
 			return result;
 		}
 
-		await deviceRepository.DeleteAsync(id);
+		await deviceRepository.DeleteDeviceAsync(id);
 
 		result.IsSuccess = true;
 

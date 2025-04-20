@@ -5,9 +5,9 @@ namespace DeviceManager.Domain.Services.Interfaces;
 
 public interface IDeviceService
 {
-	Task<ServiceResult<Device>> AddDevice(Device device);
-	Task<ServiceResult<Device>> GetDevices(RequestFilters filters);
-	Task<ServiceResult<Device>> GetDevice(int id);
-	Task<ServiceResult<Device>> UpdateDevice(int id, Device deviceToUpdate);
-	Task<ServiceResult<Device>> DeleteDevice(int id);
+	Task<ServiceResult<Device>> AddDeviceAsync(Device device);
+	Task<ServiceResult<Device>> GetDevicesAsync(RequestFilters filters);
+	Task<ServiceResult<Device>> GetDeviceAsync(int id);
+	Task<ServiceResult<Device>> UpdateDeviceAsync(int id, Device deviceToUpdate);
+	Task<ServiceResult<Device>> DeleteDeviceAsync(int id);
 }

@@ -8,7 +8,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Fix docker network" />
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Dtos/CreateDeviceRequestDtoTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Domain.Services/Services/DeviceServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Implementations/DeviceService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Domain.Services/Interfaces/IDeviceService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Tests.CrossCutting/DeviceManager.Tests.CrossCutting.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Tests.CrossCutting/DeviceManager.Tests.CrossCutting.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Controllers/DevicesControllerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/DeviceManager.Tests.Unit.Application.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/DeviceManager.Tests.Unit.Application.WebApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.sln" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln.DotSettings.user" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +38,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/696ea149e41ddc60bdd9238370d01ba5f417a4a91ce8ac42c17d4eee0afa038/RelationalConnection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6eb1aa1decdd78757069bb22ccf8442306e771edb10f1c6de6755a69622867e/InternalServerError.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cb84b0c6366bb07e1e6831d31e321b5f2dee508d7317ddd6e8e62b6ce82b5d/Enum.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e236b3163462f9f3c28dda0a52bc1f5ad052312cec3f621b92f8699fcd6243/EntityGraphAttacher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f6f937e7fde51c3ca061c59112cdd35b76a72e9ef8821ac361c6ef71e90ea88/ControllerEndpointRouteBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/JulioNascimento/Documents/Julio Barros/Projetos/DeviceManager/DeviceManager.Application.WebApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
@@ -51,6 +66,7 @@
     ".NET Launch Settings Profile.DeviceManager.Application.WebApi: Development.executor": "Debug",
     ".NET Launch Settings Profile.DeviceManager.Application.WebApi: Rider.executor": "Debug",
     ".NET Launch Settings Profile.DeviceManager.Application.WebApi: http.executor": "Debug",
+    "5b0122eb-2356-445b-be1d-feba8242b301.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ccf748ea-08b2-42c1-ba74-0c83a1640307.executor": "Debug",
     "git-widget-placeholder": "master",
@@ -141,7 +157,7 @@
       <updated>1744950307572</updated>
       <workItem from="1744950311097" duration="1973000" />
       <workItem from="1744952775944" duration="39704000" />
-      <workItem from="1745082745718" duration="28729000" />
+      <workItem from="1745082745718" duration="38128000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -303,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745112866295</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Fix README.md">
+      <option name="closed" value="true" />
+      <created>1745113601420</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1745113601420</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +368,8 @@
     <MESSAGE value="Document API" />
     <MESSAGE value="Reorganize dtos" />
     <MESSAGE value="Fix docker network" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix docker network" />
+    <MESSAGE value="Fix README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -354,13 +379,39 @@
           <line>53</line>
           <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Domain.Services\Implementations\DeviceService.cs" containingFunctionPresentation="Method 'UpdateDevice'">
             <startOffsets>
-              <option value="1256" />
+              <option value="1276" />
             </startOffsets>
             <endOffsets>
-              <option value="1257" />
+              <option value="1277" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DeviceManager.Application.WebApi/Dtos/CreateDeviceRequestDto.cs</url>
+          <line>16</line>
+          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Application.WebApi\Dtos\CreateDeviceRequestDto.cs" containingFunctionPresentation="Method 'ToDomain'">
+            <startOffsets>
+              <option value="364" />
+            </startOffsets>
+            <endOffsets>
+              <option value="365" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DeviceManager.Tests.Unit.Application.WebApi/Dtos/CreateDeviceRequestDtoTests.cs</url>
+          <line>11</line>
+          <properties documentPath="C:\Users\JulioNascimento\Documents\Julio Barros\Projetos\DeviceManager\DeviceManager.Tests.Unit.Application.WebApi\Dtos\CreateDeviceRequestDtoTests.cs" containingFunctionPresentation="Method 'ToDomain__ShouldReturn__DomainDevice'">
+            <startOffsets>
+              <option value="300" />
+            </startOffsets>
+            <endOffsets>
+              <option value="301" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
