@@ -1,0 +1,169 @@
+type: collection.insomnia.rest/5.0
+name: Device-Manager
+meta:
+  id: wrk_6c0c86ef684b44a69070163822a29ad0
+  created: 1745004542276
+  modified: 1745004542276
+collection:
+  - url: "{{baseRoute}}/{{apiVersion}}/devices"
+    name: Get Devices
+    meta:
+      id: req_50c055fe6e1d4c7db21fcbe257b1a441
+      created: 1745004668500
+      modified: 1745109092632
+      isPrivate: false
+      sortKey: -1745004668500
+    method: GET
+    parameters:
+      - id: pair_231b78b82dad456a84fa59ff753972cc
+        name: brand
+        value: Apple
+        disabled: true
+      - id: pair_78eabe77349147dabbbaada1c787e86b
+        name: state
+        value: available
+        disabled: true
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{baseRoute}}/{{apiVersion}}/devices"
+    name: Create Device
+    meta:
+      id: req_02217210cce04eadafe3f33022237879
+      created: 1745007803607
+      modified: 1745108985711
+      isPrivate: false
+      sortKey: -1742415167763.5
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "iphone xs",
+        	"brand": "apple",
+        	"state": "test"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{baseRoute}}/{{apiVersion}}/devices/10"
+    name: Get Device
+    meta:
+      id: req_ad0da7a4f1f54b85a353ee092073c702
+      created: 1745092648811
+      modified: 1745187670259
+      isPrivate: false
+      sortKey: -1743709918131.75
+    method: GET
+    parameters:
+      - id: pair_901622d19184488db061cd22249c5327
+        disabled: true
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{baseRoute}}/{{apiVersion}}/devices/8"
+    name: Delete Device
+    meta:
+      id: req_bd6bb8955d784ce0babad0b695f993b6
+      created: 1745095371587
+      modified: 1745109102660
+      isPrivate: false
+      sortKey: -1741120417395.25
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "iphone xs",
+        	"brand": "apple",
+        	"state": "inactive"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{baseRoute}}/{{apiVersion}}/devices/3"
+    name: Update Device
+    meta:
+      id: req_faa8ed88c79a4a1cb336cd7d14047f9a
+      created: 1745096164480
+      modified: 1745188053919
+      isPrivate: false
+      sortKey: -1743062542947.625
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id": 3,
+        	"name": "Pixel 7",
+        	"brand": "Google",
+        	"state": "Available"
+        }
+    parameters:
+      - id: pair_901622d19184488db061cd22249c5327
+        disabled: true
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_ba1ca29133371415b0cf6a8bf6bfe48fc054cb18
+    created: 1745004542280
+    modified: 1745004542280
+environments:
+  name: Local Environment
+  meta:
+    id: env_ba1ca29133371415b0cf6a8bf6bfe48fc054cb18
+    created: 1745004542278
+    modified: 1745187578621
+    isPrivate: false
+  data:
+    baseRoute: http://localhost:7019/device-manager
+    apiVersion: v1

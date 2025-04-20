@@ -8,12 +8,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="">
+    <list default="true" id="55cba56c-8bc8-4c80-ae13-53db4062e791" name="Changes" comment="Final commit">
+      <change afterPath="$PROJECT_DIR$/Insomnia/Insomnia_2025-04-20.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceManager/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Application.WebApi/Controllers/v1/DevicesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Infrastructure.Database/Implementations/DeviceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Infrastructure/Repository/DeviceRepositoryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.Tests.Unit.Infrastructure/Repository/DeviceRepositoryTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeviceManager.sln" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceManager.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +144,7 @@
       <workItem from="1744950311097" duration="1973000" />
       <workItem from="1744952775944" duration="39704000" />
       <workItem from="1745082745718" duration="42765000" />
-      <workItem from="1745186555165" duration="1407000" />
+      <workItem from="1745186555165" duration="2541000" />
     </task>
     <task id="LOCAL-00001" summary="Create Device model">
       <option name="closed" value="true" />
@@ -357,7 +354,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745178230752</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Final commit">
+      <option name="closed" value="true" />
+      <created>1745188078122</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1745188078122</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,7 +383,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Implement DevicesController.cs" />
     <MESSAGE value="Add Controllers.Create tests" />
     <MESSAGE value="Add Controllers.Fetch tests" />
     <MESSAGE value="Add Controllers.Update tests" />
@@ -403,7 +407,8 @@
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Remove unused folder" />
     <MESSAGE value="Add Repository.AddDeviceAsync test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Repository.AddDeviceAsync test" />
+    <MESSAGE value="Final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
