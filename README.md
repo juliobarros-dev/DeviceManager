@@ -17,7 +17,7 @@ The project follows a modular, clean structure:
 - **Domain.Models**: Contains entities and value objects representing the core domain.
 - **Domain.Services**: Implements business rules and orchestrates domain operations.
 - **Infrastructure.Database**: Manages data persistence and database communication.
-- **Tests**: Includes unit and integration tests to ensure code quality.
+- **Tests**: Includes unit tests to ensure code quality.
 
 ---
 
