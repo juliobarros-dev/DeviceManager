@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using DeviceManager.Domain.Models;
+﻿using DeviceManager.Domain.Models;
 using DeviceManager.Domain.Models.Enums;
 using DeviceManager.Domain.Services.Implementations;
 using DeviceManager.Domain.Services.Interfaces;

@@ -1,6 +1,4 @@
 ﻿using DeviceManager.Application.WebApi.Dtos;
-using DeviceManager.Domain.Models;
-using DeviceManager.Domain.Models.Enums;
 using Xunit;
 
 namespace DeviceManager.Tests.Unit.Application.WebApi.Dtos;
