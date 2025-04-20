@@ -1,5 +1,6 @@
 ﻿using DeviceManager.Domain.Models;
 using DeviceManager.Domain.Models.Enums;
+using DeviceManager.Domain.Services.Models;
 using DeviceManager.Infrastructure.Database.Implementations;
 using DeviceManager.Infrastructure.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -55,5 +56,15 @@ public class DeviceRepositoryTests
 
 		Assert.NotNull(result);
 		Assert.Equal(domainDevice.Name, result.Name);
+	}
+
+	[Fact]
+	public async Task GetDevicesAsync__ShouldReturnListOfAllDevices__IfNoFilters()
+	{
+		// Arrange
+		var filters = new RequestFilters();
+		
+		// Act
+		var result = 
 	}
 }

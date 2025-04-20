@@ -48,7 +48,7 @@ public class DeviceRepository(IDeviceManagerDbContext dbContext) : IDeviceReposi
 
 	public async Task<DomainDevice?> GetDeviceAsync(int id)
 	{
-		var databaseDevice = await dbContext.Devices.AsNoTracking().FirstAsync(dev => dev.Id == id);
+		var databaseDevice = await dbContext.Devices.AsNoTracking().FirstOrDefaultAsync(dev => dev.Id == id);
 
 		return databaseDevice?.ToDomain();
 	}

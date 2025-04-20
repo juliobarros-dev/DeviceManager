@@ -150,7 +150,7 @@ public class DevicesController(IDeviceService deviceService, ILogger<DevicesCont
 	/// <response code="400">Validation errors or missing ID.</response>
 	/// <response code="404">Device not found.</response>
 	/// <response code="500">Unexpected error occurred.</response>
-	[HttpPut]
+	[HttpPatch("{id}")]
 	[ProducesResponseType(typeof(Response), StatusCodes.Status200OK)]
 	[ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(typeof(Response), StatusCodes.Status404NotFound)]
